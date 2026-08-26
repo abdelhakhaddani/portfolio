@@ -1,19 +1,24 @@
-/* ═══════════════════════════════════════════════════════
-   PORTFOLIO DATA
-   To add a new project:
-     1. Copy image to assets/img/
-     2. Add <figure class="portfolio-item" data-index="N"> in index.html
-     3. Add matching entry here at index N
-═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   HOW TO ADD A NEW PROJECT — only 2 steps:
+
+   STEP 1 → Copy your image into:
+            C:\Users\abdel\OneDrive\Desktop\abdelhak-portfolio\assets\img\
+
+   STEP 2 → Add one line below inside portfolioData like this:
+            { src:'assets/img/YOUR-IMAGE.jpg', title:'Project Name', type:'Project Type' },
+
+   Then push to GitHub — the website updates automatically.
+═══════════════════════════════════════════════════════════════ */
 const portfolioData = [
-  { src:'assets/img/lobby.jpg',         title:'Hotel Lobby Design',         type:'3D Interior Visualization',    link:'https://www.behance.net/abdelhakhaddani' },
-  { src:'assets/img/majliss.jpg',       title:'Majliss Traditional Lounge', type:'Interior Design Concept',      link:'https://www.behance.net/abdelhakhaddani' },
-  { src:'assets/img/hotel-room.jpg',    title:'Royal Hotel Suite',          type:'Hospitality Interior Rendering',link:'https://www.behance.net/abdelhakhaddani' },
-  { src:'assets/img/hall-entree.jpg',   title:'Grand Entrance Hall',        type:'Residential Visualization',    link:'https://www.behance.net/abdelhakhaddani' },
-  { src:'assets/img/salle-a-manger.jpg',title:'Modern Dining Room',         type:'Interior Rendering',           link:'https://www.behance.net/abdelhakhaddani' },
-  { src:'assets/img/perspective-1.jpg', title:'Architectural Perspective I', type:'Exterior Visualization',      link:'https://www.behance.net/abdelhakhaddani' },
-  { src:'assets/img/perspective-2.jpg', title:'Architectural Perspective II',type:'3D Architectural View',       link:'https://www.flipsnack.com/abdelhakhaddani/abdelhak-haddani-portfolio.html' },
-  { src:'assets/img/perspective-3.jpg', title:'Architectural Perspective III',type:'Exterior Rendering',         link:'https://haddani.weebly.com/' }
+  { src:'assets/img/lobby.jpg',         title:'Hotel Lobby Design',          type:'3D Interior Visualization'     },
+  { src:'assets/img/majliss.jpg',       title:'Majliss Traditional Lounge',  type:'Interior Design Concept'       },
+  { src:'assets/img/hotel-room.jpg',    title:'Royal Hotel Suite',           type:'Hospitality Interior Rendering' },
+  { src:'assets/img/hall-entree.jpg',   title:'Grand Entrance Hall',         type:'Residential Visualization'     },
+  { src:'assets/img/salle-a-manger.jpg',title:'Modern Dining Room',          type:'Interior Rendering'            },
+  { src:'assets/img/perspective-1.jpg', title:'Architectural Perspective I', type:'Exterior Visualization'        },
+  { src:'assets/img/perspective-2.jpg', title:'Architectural Perspective II',type:'3D Architectural View'         },
+  { src:'assets/img/perspective-3.jpg', title:'Architectural Perspective III',type:'Exterior Rendering'           }
+  /* ← ADD NEW PROJECTS HERE, then push */
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -52,24 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Active nav highlight ── */
   const sections   = document.querySelectorAll('section[id]');
   const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-  new IntersectionObserver(entries => {
+  const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       navAnchors.forEach(a => a.classList.remove('active'));
       const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
       if (a) a.classList.add('active');
     });
-  }, { threshold: 0.4 }).observe ? (() => {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        navAnchors.forEach(a => a.classList.remove('active'));
-        const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('active');
-      });
-    }, { threshold: 0.4 });
-    sections.forEach(s => io.observe(s));
-  })() : null;
+  }, { threshold: 0.4 });
+  sections.forEach(s => io.observe(s));
 
   /* ── Typing effect ── */
   const roles = [
@@ -89,6 +85,27 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeLoop, del ? 38 : 75);
   }
   typeLoop();
+
+  /* ══════════════════════════════════════════════
+     AUTO-BUILD PORTFOLIO GRID FROM portfolioData
+     (you never need to touch index.html)
+  ══════════════════════════════════════════════ */
+  const grid = document.getElementById('portfolioGrid');
+  portfolioData.forEach((project, i) => {
+    const fig = document.createElement('figure');
+    fig.className = 'portfolio-item';
+    fig.dataset.index = i;
+    fig.setAttribute('data-aos', '');
+    fig.innerHTML = `
+      <img src="${project.src}" alt="${project.title}" loading="lazy">
+      <figcaption>
+        <div class="fig-text">
+          <h4>${project.title}</h4>
+          <p>${project.type}</p>
+        </div>
+      </figcaption>`;
+    grid.appendChild(fig);
+  });
 
   /* ── Scroll reveal + counters + language bars ── */
   const aosEls  = document.querySelectorAll('[data-aos]');
@@ -160,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tmp.src = d.src;
     lbTitle.textContent = d.title;
     lbSub.textContent   = d.type;
-    lbLink.href         = d.link;
+    if (lbLink) lbLink.href = '#';
     lbCur.textContent   = idx + 1;
     lbDots.querySelectorAll('.lb-dot').forEach((dot, j) => dot.classList.toggle('active', j === idx));
   }
@@ -178,8 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.portfolio-item').forEach(item => {
-    item.addEventListener('click', () => open(+item.dataset.index));
+  grid.addEventListener('click', e => {
+    const item = e.target.closest('.portfolio-item');
+    if (item) open(+item.dataset.index);
   });
 
   lbClose.addEventListener('click', close);

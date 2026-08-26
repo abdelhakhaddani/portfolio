@@ -377,75 +377,10 @@
     <p class="section-tag" data-aos>My Work</p>
     <h2 class="section-title" data-aos>Portfolio</h2>
     <div class="ornament" data-aos><span></span><i class="diamond"></i><span></span></div>
-    <p class="portfolio-intro" data-aos>Click any image to open the full gallery viewer. Use the ↗ icon to view the project on my portfolio.</p>
+    <p class="portfolio-intro" data-aos>Click any image to open the full gallery viewer.</p>
 
-    <!--
-      HOW TO ADD MORE PROJECTS:
-      1. Copy your image into assets/img/
-      2. Duplicate a <figure> block below, update data-index (next number),
-         src, alt, h4 title, and p subtitle.
-      3. Add a matching entry to portfolioData[] in assets/js/script.js.
-    -->
-    <div class="portfolio-grid">
-
-      <figure class="portfolio-item" data-index="0" data-aos>
-        <img src="assets/img/lobby.jpg" alt="Hotel Lobby Design" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Hotel Lobby Design</h4><p>3D Interior Visualization</p></div>
-        </figcaption>
-      </figure>
-
-      <figure class="portfolio-item" data-index="1" data-aos>
-        <img src="assets/img/majliss.jpg" alt="Majliss Traditional Lounge" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Majliss Traditional Lounge</h4><p>Interior Design Concept</p></div>
-        </figcaption>
-      </figure>
-
-      <figure class="portfolio-item" data-index="2" data-aos>
-        <img src="assets/img/hotel-room.jpg" alt="Royal Hotel Suite" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Royal Hotel Suite</h4><p>Hospitality Interior Rendering</p></div>
-        </figcaption>
-      </figure>
-
-      <figure class="portfolio-item" data-index="3" data-aos>
-        <img src="assets/img/hall-entree.jpg" alt="Grand Entrance Hall" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Grand Entrance Hall</h4><p>Residential Visualization</p></div>
-        </figcaption>
-      </figure>
-
-      <figure class="portfolio-item" data-index="4" data-aos>
-        <img src="assets/img/salle-a-manger.jpg" alt="Modern Dining Room" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Modern Dining Room</h4><p>Interior Rendering</p></div>
-        </figcaption>
-      </figure>
-
-      <figure class="portfolio-item" data-index="5" data-aos>
-        <img src="assets/img/perspective-1.jpg" alt="Architectural Perspective I" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Architectural Perspective I</h4><p>Exterior Visualization</p></div>
-        </figcaption>
-      </figure>
-
-      <figure class="portfolio-item" data-index="6" data-aos>
-        <img src="assets/img/perspective-2.jpg" alt="Architectural Perspective II" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Architectural Perspective II</h4><p>3D Architectural View</p></div>
-        </figcaption>
-      </figure>
-
-      <figure class="portfolio-item" data-index="7" data-aos>
-        <img src="assets/img/perspective-3.jpg" alt="Architectural Perspective III" loading="lazy">
-        <figcaption>
-          <div class="fig-text"><h4>Architectural Perspective III</h4><p>Exterior Rendering</p></div>
-          </a>
-        </figcaption>
-      </figure>
-
-    </div>
+    <!-- Portfolio items are built automatically from portfolioData in script.js -->
+    <div class="portfolio-grid" id="portfolioGrid"></div>
 
     <div class="portfolio-cta" data-aos>
       <p>See more of my work on:</p>
