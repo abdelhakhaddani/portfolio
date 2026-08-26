@@ -555,14 +555,16 @@ a.about-info-item:hover { border-color:var(--gold); transform:translateY(-2px); 
 }
 .lb-img-wrap img {
   width:100%; max-height:65vh; object-fit:contain;
-  background:var(--surface); transition:opacity .25s;
+  background:var(--surface);
+  transition:opacity .25s;          /* only fade, no transform transition */
   transform-origin:center center;
   user-select:none; -webkit-user-select:none;
+  -webkit-user-drag:none;
   cursor:zoom-in;
   will-change:transform;
 }
-.lb-img-wrap img.zoomed { cursor:grab; }
-.lb-img-wrap img.zoomed:active { cursor:grabbing; }
+.lb-img-wrap img.zoomed          { cursor:grab; }
+.lb-img-wrap img.zoomed:active   { cursor:grabbing; }
 .lb-img-wrap img.loading { opacity:0; }
 .lb-info { text-align:center; }
 .lb-info h4 { font-size:1.25rem; margin-bottom:.3rem; }

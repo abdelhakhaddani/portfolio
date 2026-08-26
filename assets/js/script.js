@@ -312,12 +312,49 @@ document.addEventListener('DOMContentLoaded', () => {
     panActive = false;
   }, { passive: true });
 
-  /* Mouse-wheel zoom on desktop — zoom toward cursor */
-  lbImg.addEventListener('wheel', e => {
+  /* ── Desktop: scroll-wheel zoom anywhere in the lightbox ── */
+  lightbox.addEventListener('wheel', e => {
+    if (lightbox.hidden) return;
     e.preventDefault();
     const factor = e.deltaY < 0 ? 1.12 : 0.89;
     pivotZoom(zoomScale * factor, e.clientX, e.clientY);
   }, { passive: false });
+
+  /* ── Desktop: double-click to toggle zoom ── */
+  lbImg.addEventListener('dblclick', e => {
+    e.stopPropagation();
+    if (zoomScale > 1) { resetZoom(); }
+    else               { pivotZoom(2.5, e.clientX, e.clientY); }
+  });
+
+  /* ── Desktop: mouse drag to pan when zoomed ── */
+  let mousePanning = false;
+  let mousePanX0 = 0, mousePanY0 = 0, mousePanTx0 = 0, mousePanTy0 = 0;
+  let mouseMoved = false;
+
+  lbImg.addEventListener('mousedown', e => {
+    if (e.button !== 0 || zoomScale <= 1) return;
+    e.preventDefault();
+    mousePanning = true;
+    mouseMoved   = false;
+    mousePanX0   = e.clientX;
+    mousePanY0   = e.clientY;
+    mousePanTx0  = zoomX;
+    mousePanTy0  = zoomY;
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!mousePanning) return;
+    const dx = e.clientX - mousePanX0;
+    const dy = e.clientY - mousePanY0;
+    if (Math.abs(dx) + Math.abs(dy) > 3) mouseMoved = true;
+    zoomX = mousePanTx0 + dx;
+    zoomY = mousePanTy0 + dy;
+    clampPan();
+    applyTransform();
+  });
+
+  window.addEventListener('mouseup', () => { mousePanning = false; });
 
   /* ── Click on grid card ── */
   grid.addEventListener('click', e => {
