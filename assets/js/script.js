@@ -165,7 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
     activeProject = projects[projectIndex];
     imgIdx = 0;
     lbTitle.textContent = activeProject.title;
-    lbSub.textContent   = activeProject.type || 'Interior Design';
+    lbSub.textContent   = activeProject.featured
+      ? 'Technical Drawings · AutoCAD & Revit'
+      : (activeProject.type || 'Interior Design');
     if (lbLink) lbLink.href = '#';
     buildDots(activeProject.images.length);
     goToImg(0);
@@ -207,7 +209,73 @@ document.addEventListener('DOMContentLoaded', () => {
   grid.addEventListener('click', e => {
     const item = e.target.closest('.portfolio-item');
     if (item) openProject(+item.dataset.index);
+    const feat = e.target.closest('.portfolio-featured-card');
+    if (feat) openProject(+feat.dataset.index);
   });
+
+  /* ── Build the featured hero card (Details / Drafts) ── */
+  function buildFeaturedCard(project, index) {
+    const folder = project.folder;
+    // Pick up to 4 images spread across the set for visual variety
+    const picks = project.images.length <= 4
+      ? project.images
+      : [
+          project.images[0],
+          project.images[Math.floor(project.images.length * 0.33)],
+          project.images[Math.floor(project.images.length * 0.66)],
+          project.images[project.images.length - 1]
+        ];
+
+    const previewHTML = picks
+      .map(img => `<img src="assets/img/${folder}/${img}" alt="${project.title}" loading="lazy">`)
+      .join('');
+
+    const card = document.createElement('div');
+    card.className = 'portfolio-featured-card';
+    card.dataset.index = index;
+    card.setAttribute('data-aos', '');
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `Open ${project.title} gallery`);
+    card.innerHTML = `
+      <div class="feat-preview">${previewHTML}</div>
+      <div class="feat-info">
+        <span class="feat-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+          </svg>
+          Technical Drawings &amp; Drafting
+        </span>
+        <h3 class="feat-title">Details, Plans<br>&amp; Construction Drafts</h3>
+        <p class="feat-desc">
+          Complete set of architectural construction documents — floor plans,
+          elevations, wall sections, structural details, site plans, and working
+          drawings produced in AutoCAD and Revit. This collection demonstrates
+          precision drafting and full-project documentation from concept to
+          construction-ready deliverable.
+        </p>
+        <div class="feat-meta">
+          <div class="feat-stat">
+            <span class="feat-stat-num">${project.images.length}</span>
+            <span class="feat-stat-label">Sheets &amp; Details</span>
+          </div>
+          <div class="feat-stat">
+            <span class="feat-stat-num">CAD</span>
+            <span class="feat-stat-label">AutoCAD · Revit</span>
+          </div>
+        </div>
+        <span class="feat-cta">
+          Open full drawing set
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
+      </div>`;
+
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openProject(index); });
+    return card;
+  }
 
   /* ── Fetch projects and build grid ── */
   fetch('assets/data/projects.json')
@@ -216,23 +284,30 @@ document.addEventListener('DOMContentLoaded', () => {
       projects = data;
 
       projects.forEach((project, i) => {
-        const coverSrc = `assets/img/${project.folder}/${project.cover}`;
-        const typeLabel = project.type || 'Interior Design';
+        if (project.featured) {
+          /* ── Featured hero card ── */
+          const card = buildFeaturedCard(project, i);
+          grid.appendChild(card);
+        } else {
+          /* ── Regular portfolio card ── */
+          const coverSrc = `assets/img/${project.folder}/${project.cover}`;
+          const typeLabel = project.type || 'Interior Design';
 
-        const fig = document.createElement('figure');
-        fig.className = 'portfolio-item';
-        fig.dataset.index = i;
-        fig.setAttribute('data-aos', '');
-        fig.innerHTML = `
-          <img src="${coverSrc}" alt="${project.title}" loading="lazy">
-          <figcaption>
-            <div class="fig-text">
-              <h4>${project.title}</h4>
-              <p>${typeLabel}</p>
-            </div>
-            ${project.images.length > 1 ? `<span class="img-count">+${project.images.length - 1} more</span>` : ''}
-          </figcaption>`;
-        grid.appendChild(fig);
+          const fig = document.createElement('figure');
+          fig.className = 'portfolio-item';
+          fig.dataset.index = i;
+          fig.setAttribute('data-aos', '');
+          fig.innerHTML = `
+            <img src="${coverSrc}" alt="${project.title}" loading="lazy">
+            <figcaption>
+              <div class="fig-text">
+                <h4>${project.title}</h4>
+                <p>${typeLabel}</p>
+              </div>
+              ${project.images.length > 1 ? `<span class="img-count">+${project.images.length - 1} more</span>` : ''}
+            </figcaption>`;
+          grid.appendChild(fig);
+        }
       });
 
       /* Re-observe new portfolio items for scroll reveal */

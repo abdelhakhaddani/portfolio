@@ -1,5 +1,46 @@
 [
   {
+    "title": "Details, Plans & Drafts",
+    "folder": "Details-Plans-and-Drafts",
+    "images": [
+      "001_001.jpg",
+      "01 - BLOC SALLES D'ENSEIGNEMENT GÉNÉRAL_001.jpg",
+      "01_001.jpg",
+      "02 - BLOC SALLES D'ENSEIGNEMENT SCIENTIFIQUE_001.jpg",
+      "02_001.jpg",
+      "03 - BLOC SANITAIRES - VESTIAIRES - BLOC LOGEMENTS - BLOC MULTIMÉDIA_001.jpg",
+      "03_001.jpg",
+      "04 - BLOC ADMINISTRATION_001.jpg",
+      "04_001.jpg",
+      "05_001.jpg",
+      "06 - PLAN MASSE TERRASSE_001.jpg",
+      "07 - PLAN MASSE RDC - PLAN DE SITUATION_001.jpg",
+      "WALL DETAIL_001.jpg",
+      "details 01_001.jpg",
+      "details 01_002.jpg",
+      "details 01_003.jpg",
+      "details 01_004.jpg",
+      "details 01_005.jpg",
+      "details 01_006.jpg",
+      "details 01_007.jpg",
+      "details 01_008.jpg",
+      "details 01_009.jpg",
+      "details 01_010.jpg",
+      "details 01_011.jpg",
+      "details 01_012.jpg",
+      "details 01_013.jpg",
+      "details 01_014.jpg",
+      "details 01_015.jpg",
+      "details 01_016.jpg",
+      "details 01_017.jpg",
+      "details 01_018.jpg",
+      "details 01_019.jpg",
+      "grille baie du réfectoire v1_001.jpg"
+    ],
+    "cover": "001_001.jpg",
+    "featured": true
+  },
+  {
     "title": "Hotel Lobby Design",
     "folder": "Hotel Lobby Design",
     "images": ["lobby.jpg"],
@@ -52,5 +93,22 @@
     "folder": "Minister's office",
     "images": ["001.jpg", "002.jpg", "003.jpg", "004.jpg"],
     "cover": "001.jpg"
+  },
+  {
+    "title": "02 - Villa Renovation",
+    "folder": "02 - Villa Renovation",
+    "images": [
+      "APPT_01_PERS_VUE01_FINAL.jpg",
+      "APPT_01_PERS_VUE02_FINAL.jpg",
+      "APPT_02_PERS_VUE01.jpg",
+      "APPT_02_PERS_VUE01_FINAL.jpg",
+      "APPT_02_PERS_VUE02.jpg",
+      "APPT_02_PERS_VUE02_FINAL.jpg",
+      "APPT_03_PERS_VUE01.jpg",
+      "APPT_03_PERS_VUE01_FINAL.jpg",
+      "APPT_03_PERS_VUE02.jpg",
+      "APPT_03_PERS_VUE02_FINAL.jpg"
+    ],
+    "cover": "APPT_01_PERS_VUE01_FINAL.jpg"
   }
 ]

@@ -32,6 +32,9 @@ jobs:
           img_dir = 'assets/img'
           projects = []
 
+          # Folders that get the featured hero-card treatment
+          FEATURED = {'Details-Plans-and-Drafts'}
+
           # Scan every subfolder inside assets/img/
           for folder_name in sorted(os.listdir(img_dir)):
               folder_path = os.path.join(img_dir, folder_name)
@@ -47,12 +50,18 @@ jobs:
               if not images:
                   continue  # skip empty folders
 
-              projects.append({
+              entry = {
                   'title':  folder_name,
                   'folder': folder_name,
                   'images': images,
                   'cover':  images[0]
-              })
+              }
+              if folder_name in FEATURED:
+                  entry['featured'] = True
+              projects.append(entry)
+
+          # Ensure featured projects always appear first
+          projects.sort(key=lambda p: (0 if p.get('featured') else 1, p['title']))
 
           os.makedirs('assets/data', exist_ok=True)
           with open('assets/data/projects.json', 'w') as f:
