@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ABDELHAK HADDANI | CAD Drafter &amp; 3D Visualization Designer</title>
 <meta name="description" content="Portfolio of Abdelhak Haddani, CAD Drafter and 3D/2D Visualization Designer specializing in architectural drafting and photorealistic rendering.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Josefin+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -17,7 +18,14 @@
 <!-- ═══ HEADER ═══ -->
 <header id="header">
   <nav class="navbar">
-    <a href="#home" class="logo">AH<span>.</span></a>
+    <a href="#home" class="logo" aria-label="Abdelhak Haddani">
+      <svg viewBox="20 14 164 218" class="logo-mark" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 26 152 L 26 54 Q 26 20 100 20 Q 174 20 174 56 L 174 113 Q 174 150 134 150 L 67 150 Q 51 150 51 134 Q 51 118 67 118 L 134 118"
+              stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 167 174 Q 167 162 130 162 L 72 162 Q 29 162 29 192 Q 29 222 72 222 L 130 222 Q 167 222 167 210"
+              stroke="currentColor" stroke-width="17" stroke-linecap="round"/>
+      </svg>
+    </a>
     <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
     </button>
@@ -40,6 +48,17 @@
     <div class="hero-grid"></div>
     <div class="hero-glow glow-1"></div>
     <div class="hero-glow glow-2"></div>
+
+    <!-- Large logo watermark inspired by the logo mark -->
+    <div class="logo-watermark" aria-hidden="true">
+      <svg viewBox="0 0 200 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="8" width="184" height="252" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M 26 152 L 26 54 Q 26 20 100 20 Q 174 20 174 56 L 174 113 Q 174 150 134 150 L 67 150 Q 51 150 51 134 Q 51 118 67 118 L 134 118"
+              stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 167 174 Q 167 162 130 162 L 72 162 Q 29 162 29 192 Q 29 222 72 222 L 130 222 Q 167 222 167 210"
+              stroke="currentColor" stroke-width="17" stroke-linecap="round"/>
+      </svg>
+    </div>
 
     <!-- Architectural / drafting blueprint background behind the name -->
     <div class="hero-blueprint">
@@ -782,7 +801,14 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <a href="#home" class="footer-logo">AH<span>.</span></a>
+      <a href="#home" class="footer-logo" aria-label="Abdelhak Haddani">
+        <svg viewBox="20 14 164 218" class="logo-mark" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 26 152 L 26 54 Q 26 20 100 20 Q 174 20 174 56 L 174 113 Q 174 150 134 150 L 67 150 Q 51 150 51 134 Q 51 118 67 118 L 134 118"
+                stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 167 174 Q 167 162 130 162 L 72 162 Q 29 162 29 192 Q 29 222 72 222 L 130 222 Q 167 222 167 210"
+                stroke="currentColor" stroke-width="17" stroke-linecap="round"/>
+        </svg>
+      </a>
       <p>&copy; <span id="year"></span> <strong>ABDELHAK HADDANI</strong>. All rights reserved.</p>
       <div class="footer-links">
         <a href="https://www.behance.net/abdelhakhaddani" target="_blank" rel="noopener">Behance</a>
