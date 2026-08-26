@@ -200,21 +200,29 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── Pinch-to-zoom + pan + double-tap ── */
-  let zoomScale = 1;
-  let zoomX = 0, zoomY = 0;          // pan offset
-  let pinchDist0 = 0;                 // initial finger distance
-  let pinchScale0 = 1;                // scale at pinch start
-  let panX0 = 0, panY0 = 0;          // pan origin at touch start
-  let panActive = false;
-  let lastTap = 0;
-
+  /*
+   * Transform used: translate(zoomX, zoomY) scale(zoomScale)
+   * Applied order:  1) scale around element centre  2) translate
+   * A pixel at image-local coords (px, py) relative to centre
+   * appears in viewport at: (px*s + tx + cx,  py*s + ty + cy)
+   * where (cx, cy) = element centre in viewport.
+   *
+   * Pivot-preserving zoom from finger midpoint (mx, my):
+   *   rx = mx - cx  (midpoint relative to element centre)
+   *   new_tx = rx - (rx - old_tx) * (new_s / old_s)
+   *   new_ty = ry - (ry - old_ty) * (new_s / old_s)
+   */
   const MIN_SCALE = 1, MAX_SCALE = 4;
+  let zoomScale = 1;
+  let zoomX = 0, zoomY = 0;
+  let lastTap  = 0;
+  let panActive = false;
+  let panX0 = 0, panY0 = 0, ptx0 = 0, pty0 = 0;
+  let pinchDist0 = 0, pinchScale0 = 1, pinchTx0 = 0, pinchTy0 = 0;
+  let swipeTx = 0, swipeTy = 0;   // for nav-swipe tracking
 
-  function applyZoom(scale, ox, oy) {
-    zoomScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale));
-    zoomX     = zoomScale === 1 ? 0 : ox;
-    zoomY     = zoomScale === 1 ? 0 : oy;
-    lbImg.style.transform = `scale(${zoomScale}) translate(${zoomX / zoomScale}px, ${zoomY / zoomScale}px)`;
+  function applyTransform() {
+    lbImg.style.transform = `translate(${zoomX}px,${zoomY}px) scale(${zoomScale})`;
     lbImg.classList.toggle('zoomed', zoomScale > 1);
   }
 
@@ -224,34 +232,54 @@ document.addEventListener('DOMContentLoaded', () => {
     lbImg.classList.remove('zoomed');
   }
 
-  function getDist(touches) {
-    const dx = touches[0].clientX - touches[1].clientX;
-    const dy = touches[0].clientY - touches[1].clientY;
-    return Math.hypot(dx, dy);
+  /* Clamp pan so image edges don't go past the wrap */
+  function clampPan() {
+    const wrap = lbImg.parentElement;
+    const maxX = (lbImg.offsetWidth  * (zoomScale - 1)) / 2;
+    const maxY = (lbImg.offsetHeight * (zoomScale - 1)) / 2;
+    zoomX = Math.min(maxX, Math.max(-maxX, zoomX));
+    zoomY = Math.min(maxY, Math.max(-maxY, zoomY));
   }
 
-  /* Swipe / pinch / pan */
-  let tx = 0, ty = 0;
+  function getDist(t) {
+    return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+  }
+
+  function pivotZoom(newScale, mx, my) {
+    newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, newScale));
+    const rect = lbImg.getBoundingClientRect();
+    const cx = rect.left + rect.width  / 2;
+    const cy = rect.top  + rect.height / 2;
+    const rx = mx - cx, ry = my - cy;
+    const ratio = newScale / zoomScale;
+    zoomX = rx - (rx - zoomX) * ratio;
+    zoomY = ry - (ry - zoomY) * ratio;
+    zoomScale = newScale;
+    if (zoomScale === 1) { zoomX = 0; zoomY = 0; }
+    else                 { clampPan(); }
+    applyTransform();
+  }
 
   lbImg.addEventListener('touchstart', e => {
     if (e.touches.length === 2) {
-      // Pinch start
+      e.preventDefault();
       pinchDist0  = getDist(e.touches);
       pinchScale0 = zoomScale;
+      pinchTx0    = zoomX;
+      pinchTy0    = zoomY;
       panActive   = false;
     } else if (e.touches.length === 1) {
-      tx = e.touches[0].clientX;
-      ty = e.touches[0].clientY;
-      panX0 = zoomX;
-      panY0 = zoomY;
-      panActive = zoomScale > 1;
+      swipeTx = ptx0 = e.touches[0].clientX;
+      swipeTy = pty0 = e.touches[0].clientY;
+      panX0 = zoomX; panY0 = zoomY;
+      panActive = (zoomScale > 1);
 
       // Double-tap to toggle zoom
       const now = Date.now();
       if (now - lastTap < 280) {
         e.preventDefault();
         if (zoomScale > 1) { resetZoom(); }
-        else               { applyZoom(2.5, 0, 0); }
+        else { pivotZoom(2.5, e.touches[0].clientX, e.touches[0].clientY); }
         lastTap = 0;
       } else { lastTap = now; }
     }
@@ -260,34 +288,35 @@ document.addEventListener('DOMContentLoaded', () => {
   lbImg.addEventListener('touchmove', e => {
     if (e.touches.length === 2) {
       e.preventDefault();
-      const dist  = getDist(e.touches);
-      const scale = pinchScale0 * (dist / pinchDist0);
-      // pivot = midpoint of two fingers relative to image centre
-      const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - lbImg.getBoundingClientRect().left - lbImg.offsetWidth / 2;
-      const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - lbImg.getBoundingClientRect().top  - lbImg.offsetHeight / 2;
-      applyZoom(scale, zoomX + midX * (scale - zoomScale), zoomY + midY * (scale - zoomScale));
+      const dist     = getDist(e.touches);
+      const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, pinchScale0 * (dist / pinchDist0)));
+      const mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      /* Restore state from pinch-start so each frame is computed from the same baseline */
+      zoomScale = pinchScale0; zoomX = pinchTx0; zoomY = pinchTy0;
+      pivotZoom(newScale, mx, my);
     } else if (e.touches.length === 1 && panActive) {
       e.preventDefault();
-      zoomX = panX0 + (e.touches[0].clientX - tx);
-      zoomY = panY0 + (e.touches[0].clientY - ty);
-      lbImg.style.transform = `scale(${zoomScale}) translate(${zoomX / zoomScale}px, ${zoomY / zoomScale}px)`;
+      zoomX = panX0 + (e.touches[0].clientX - ptx0);
+      zoomY = panY0 + (e.touches[0].clientY - pty0);
+      clampPan();
+      applyTransform();
     }
   }, { passive: false });
 
   lbImg.addEventListener('touchend', e => {
-    if (e.touches.length === 0 && e.changedTouches.length === 1 && !panActive && zoomScale === 1) {
-      // Swipe navigation only when not zoomed
-      const diff = tx - e.changedTouches[0].clientX;
+    if (e.touches.length === 0 && !panActive && zoomScale === 1) {
+      const diff = swipeTx - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) goToImg(imgIdx + (diff > 0 ? 1 : -1));
     }
-    if (e.touches.length < 2) panActive = false;
+    panActive = false;
   }, { passive: true });
 
-  /* Mouse-wheel zoom on desktop */
+  /* Mouse-wheel zoom on desktop — zoom toward cursor */
   lbImg.addEventListener('wheel', e => {
     e.preventDefault();
-    const delta = e.deltaY < 0 ? 0.15 : -0.15;
-    applyZoom(zoomScale + delta, zoomX, zoomY);
+    const factor = e.deltaY < 0 ? 1.12 : 0.89;
+    pivotZoom(zoomScale * factor, e.clientX, e.clientY);
   }, { passive: false });
 
   /* ── Click on grid card ── */

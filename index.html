@@ -468,14 +468,16 @@
       <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
     </svg>
   </button>
-  <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><polyline points="15 18 9 12 15 6"/></svg>
-  </button>
-  <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><polyline points="9 18 15 12 9 6"/></svg>
-  </button>
   <div class="lb-inner">
-    <div class="lb-img-wrap"><img id="lbImg" src="" alt=""></div>
+    <div class="lb-img-wrap">
+      <img id="lbImg" src="" alt="">
+      <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
     <div class="lb-info">
       <h4 id="lbTitle"></h4>
       <p id="lbSubtitle"></p>
@@ -781,7 +783,7 @@
 <!-- WhatsApp floating button -->
 <a href="https://wa.me/13322604690" target="_blank" rel="noopener noreferrer"
    class="wa-float" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path d="M16 2C8.268 2 2 8.268 2 16c0 2.478.648 4.804 1.781 6.818L2 30l7.385-1.742A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Zm0 25.5a11.45 11.45 0 0 1-5.832-1.594l-.418-.248-4.383 1.033 1.074-4.272-.273-.44A11.455 11.455 0 0 1 4.5 16C4.5 9.648 9.648 4.5 16 4.5S27.5 9.648 27.5 16 22.352 27.5 16 27.5Zm6.29-8.61c-.345-.173-2.04-1.006-2.356-1.12-.316-.115-.546-.173-.776.173-.23.345-.89 1.12-1.09 1.35-.2.23-.4.258-.745.086-.345-.173-1.457-.537-2.774-1.711-1.025-.914-1.717-2.042-1.918-2.387-.2-.345-.021-.531.15-.703.155-.154.345-.4.518-.6.173-.2.23-.345.345-.575.115-.23.058-.432-.029-.605-.086-.173-.776-1.872-1.063-2.563-.28-.672-.565-.58-.776-.591l-.661-.012a1.27 1.27 0 0 0-.92.432c-.316.345-1.207 1.178-1.207 2.872s1.235 3.332 1.407 3.562c.173.23 2.43 3.71 5.888 5.204.823.355 1.465.567 1.966.726.826.263 1.578.226 2.172.137.663-.1 2.04-.834 2.327-1.639.287-.805.287-1.495.2-1.639-.086-.144-.316-.23-.661-.403Z"/>
   </svg>
   <span class="wa-tooltip">Chat on WhatsApp</span>

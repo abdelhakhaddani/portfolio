@@ -533,23 +533,25 @@ a.about-info-item:hover { border-color:var(--gold); transform:translateY(-2px); 
 .lb-close:hover { background:var(--gold); color:#0e0c08; transform:rotate(90deg); }
 .lb-arrow {
   position:absolute; top:50%; transform:translateY(-50%);
-  width:50px; height:50px; border-radius:50%;
-  background:rgba(255,255,255,.07); border:1px solid var(--border);
-  color:var(--text); cursor:pointer;
+  width:46px; height:46px; border-radius:50%;
+  background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.18);
+  color:#fff; cursor:pointer;
   display:flex; align-items:center; justify-content:center;
-  transition:background var(--t), border-color var(--t); z-index:2;
+  transition:background var(--t), border-color var(--t);
+  z-index:3; backdrop-filter:blur(4px);
 }
-.lb-prev { left:1.5rem; }
-.lb-next { right:1.5rem; }
+.lb-prev { left:.85rem; }
+.lb-next { right:.85rem; }
 .lb-arrow:hover { background:var(--gold); border-color:var(--gold); color:#0e0c08; }
 .lb-inner {
   display:flex; flex-direction:column; align-items:center;
   gap:1.4rem; max-width:900px; width:92%; padding:0 5rem;
 }
 .lb-img-wrap {
+  position:relative;                       /* arrows anchor here */
   width:100%; border-radius:var(--radius); overflow:hidden;
   border:1px solid var(--border); box-shadow:0 30px 80px rgba(0,0,0,.6);
-  touch-action:none; /* let JS handle all touch on the image */
+  touch-action:none;
 }
 .lb-img-wrap img {
   width:100%; max-height:65vh; object-fit:contain;
@@ -557,6 +559,7 @@ a.about-info-item:hover { border-color:var(--gold); transform:translateY(-2px); 
   transform-origin:center center;
   user-select:none; -webkit-user-select:none;
   cursor:zoom-in;
+  will-change:transform;
 }
 .lb-img-wrap img.zoomed { cursor:grab; }
 .lb-img-wrap img.zoomed:active { cursor:grabbing; }
@@ -732,7 +735,7 @@ a.contact-item:hover .contact-arrow { color:var(--gold); }
   .about-grid, .contact-grid, .edu-grid { grid-template-columns:1fr; }
   .skills-grid { grid-template-columns:1fr; }
   .portfolio-grid { grid-template-columns:repeat(2,1fr); }
-  .lb-inner { padding:0 4rem; }
+  .lb-inner { padding:0 1rem; }
 }
 @media(max-width:720px){
   .nav-toggle { display:flex; }
@@ -749,9 +752,18 @@ a.contact-item:hover .contact-arrow { color:var(--gold); }
   .nav-toggle.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
   .about-info, .lang-grid, .form-row { grid-template-columns:1fr; }
   .footer-inner { flex-direction:column; text-align:center; }
-  .lb-inner { padding:0 3rem; }
-  .lb-prev { left:.5rem; } .lb-next { right:.5rem; }
-  .lb-arrow { width:40px; height:40px; }
+
+  /* Lightbox: full-width, bigger image */
+  .lb-inner { padding:0; gap:.6rem; width:100%; max-width:100%; margin-top:3.5rem; }
+  .lb-img-wrap { border-radius:0; border-left:none; border-right:none; }
+  .lb-img-wrap img { max-height:72vh; }
+  .lb-info { padding:0 1rem; }
+  .lb-info h4 { font-size:1rem; }
+  .lb-close { top:.75rem; right:.75rem; }
+  /* Arrows sit inside the image wrap so top:50% centres them on the photo */
+  .lb-arrow { width:38px; height:38px; }
+  .lb-prev { left:.5rem; }
+  .lb-next { right:.5rem; }
 }
 @media(max-width:480px){
   .portfolio-grid { grid-template-columns:1fr 1fr; }
@@ -759,56 +771,19 @@ a.contact-item:hover .contact-arrow { color:var(--gold); }
 }
 
 /* ═══════════════════════════════════════
-   MOBILE LIGHTBOX — bigger images
-═══════════════════════════════════════ */
-@media(max-width:720px){
-  /* Full-screen lightbox on mobile */
-  .lightbox {
-    justify-content:flex-start;
-  }
-  .lb-inner {
-    width:100%; max-width:100%;
-    padding:0; gap:.6rem;
-    margin-top:3.5rem; /* space for close button */
-  }
-  .lb-img-wrap {
-    border-radius:0;
-    border-left:none; border-right:none;
-  }
-  .lb-img-wrap img {
-    max-height:72vh;   /* taller on mobile */
-  }
-  .lb-info { padding:0 1rem; }
-  .lb-info h4 { font-size:1rem; }
-  .lb-close {
-    top:.75rem; right:.75rem;
-  }
-  /* Arrows overlaid on image, smaller */
-  .lb-arrow {
-    top:auto;
-    bottom:calc(72vh + 3.5rem + .6rem + 1rem);
-    transform:none;
-    width:36px; height:36px;
-    background:rgba(0,0,0,.55);
-  }
-  .lb-prev { left:.5rem; }
-  .lb-next { right:.5rem; }
-}
-
-/* ═══════════════════════════════════════
    WHATSAPP FLOATING BUTTON
 ═══════════════════════════════════════ */
 .wa-float {
   position:fixed;
-  bottom:1.6rem;
-  left:1.6rem;
+  bottom:2rem;
+  left:2rem;
   z-index:3998;
-  width:56px; height:56px;
+  width:46px; height:46px;
   border-radius:50%;
   background:#25d366;
   color:#fff;
   display:flex; align-items:center; justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.45);
+  box-shadow:0 4px 16px rgba(37,211,102,.45);
   transition:transform .25s var(--ease), box-shadow .25s var(--ease);
 }
 .wa-float:hover {
