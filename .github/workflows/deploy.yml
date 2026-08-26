@@ -24,6 +24,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Auto-generate projects.json from image folders
+        run: |
+          python3 << 'EOF'
+          import os, json
+
+          img_dir = 'assets/img'
+          projects = []
+
+          # Scan every subfolder inside assets/img/
+          for folder_name in sorted(os.listdir(img_dir)):
+              folder_path = os.path.join(img_dir, folder_name)
+              if not os.path.isdir(folder_path):
+                  continue  # skip files like logo.svg, favicon.svg
+
+              # Collect all image files, sorted by name
+              images = sorted([
+                  f for f in os.listdir(folder_path)
+                  if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp', '.gif'))
+              ])
+
+              if not images:
+                  continue  # skip empty folders
+
+              projects.append({
+                  'title':  folder_name,
+                  'folder': folder_name,
+                  'images': images,
+                  'cover':  images[0]
+              })
+
+          os.makedirs('assets/data', exist_ok=True)
+          with open('assets/data/projects.json', 'w') as f:
+              json.dump(projects, f, indent=2, ensure_ascii=False)
+
+          print(f'✅ Generated {len(projects)} projects:')
+          for p in projects:
+              print(f'   {p["title"]} — {len(p["images"])} image(s)')
+          EOF
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

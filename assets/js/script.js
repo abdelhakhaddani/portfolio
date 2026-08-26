@@ -1,25 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════
    HOW TO ADD A NEW PROJECT — only 2 steps:
 
-   STEP 1 → Copy your image into:
-            C:\Users\abdel\OneDrive\Desktop\abdelhak-portfolio\assets\img\
+   STEP 1 → Create a folder inside:
+            assets/img/Your Project Name/
 
-   STEP 2 → Add one line below inside portfolioData like this:
-            { src:'assets/img/YOUR-IMAGE.jpg', title:'Project Name', type:'Project Type' },
+   STEP 2 → Drop your images into that folder.
 
    Then push to GitHub — the website updates automatically.
+   The folder name becomes the project title.
 ═══════════════════════════════════════════════════════════════ */
-const portfolioData = [
-  { src:'assets/img/lobby.jpg',         title:'Hotel Lobby Design',          type:'3D Interior Visualization'     },
-  { src:'assets/img/majliss.jpg',       title:'Majliss Traditional Lounge',  type:'Interior Design Concept'       },
-  { src:'assets/img/hotel-room.jpg',    title:'Royal Hotel Suite',           type:'Hospitality Interior Rendering' },
-  { src:'assets/img/hall-entree.jpg',   title:'Grand Entrance Hall',         type:'Residential Visualization'     },
-  { src:'assets/img/salle-a-manger.jpg',title:'Modern Dining Room',          type:'Interior Rendering'            },
-  { src:'assets/img/perspective-1.jpg', title:'Architectural Perspective I', type:'Exterior Visualization'        },
-  { src:'assets/img/perspective-2.jpg', title:'Architectural Perspective II',type:'3D Architectural View'         },
-  { src:'assets/img/perspective-3.jpg', title:'Architectural Perspective III',type:'Exterior Rendering'           }
-  /* ← ADD NEW PROJECTS HERE, then push */
-];
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -86,27 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   typeLoop();
 
-  /* ══════════════════════════════════════════════
-     AUTO-BUILD PORTFOLIO GRID FROM portfolioData
-     (you never need to touch index.html)
-  ══════════════════════════════════════════════ */
-  const grid = document.getElementById('portfolioGrid');
-  portfolioData.forEach((project, i) => {
-    const fig = document.createElement('figure');
-    fig.className = 'portfolio-item';
-    fig.dataset.index = i;
-    fig.setAttribute('data-aos', '');
-    fig.innerHTML = `
-      <img src="${project.src}" alt="${project.title}" loading="lazy">
-      <figcaption>
-        <div class="fig-text">
-          <h4>${project.title}</h4>
-          <p>${project.type}</p>
-        </div>
-      </figcaption>`;
-    grid.appendChild(fig);
-  });
-
   /* ── Scroll reveal + counters + language bars ── */
   const aosEls  = document.querySelectorAll('[data-aos]');
   const statH3s = document.querySelectorAll('.stat-card h3[data-count]');
@@ -140,9 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.18 });
   aosEls.forEach(el => aosIO.observe(el));
 
-  /* ══════════════════════════════════════════
-     LIGHTBOX CAROUSEL
-  ══════════════════════════════════════════ */
+  /* ══════════════════════════════════════════════════════════════
+     PORTFOLIO — loaded from assets/data/projects.json
+     Each project = one folder in assets/img/<Project Name>/
+     Folder name  → card title
+     First image  → cover thumbnail
+     All images   → lightbox carousel for that project
+  ══════════════════════════════════════════════════════════════ */
+
+  const grid     = document.getElementById('portfolioGrid');
   const lightbox = document.getElementById('lightbox');
   const overlay  = document.getElementById('lbOverlay');
   const lbImg    = document.getElementById('lbImg');
@@ -156,60 +130,69 @@ document.addEventListener('DOMContentLoaded', () => {
   const lbPrev   = document.getElementById('lbPrev');
   const lbNext   = document.getElementById('lbNext');
 
-  const total = portfolioData.length;
-  let idx = 0;
+  let projects = [];      // full list of projects from JSON
+  let activeProject = null;  // currently open project in lightbox
+  let imgIdx = 0;         // current image index within the active project
 
-  lbTotal.textContent = total;
-  portfolioData.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'lb-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', `Image ${i + 1}`);
-    d.addEventListener('click', () => goTo(i));
-    lbDots.appendChild(d);
-  });
-
-  function goTo(i) {
-    idx = (i + total) % total;
-    const d = portfolioData[idx];
-    lbImg.classList.add('loading');
-    const tmp = new Image();
-    tmp.onload = () => { lbImg.src = d.src; lbImg.alt = d.title; lbImg.classList.remove('loading'); };
-    tmp.src = d.src;
-    lbTitle.textContent = d.title;
-    lbSub.textContent   = d.type;
-    if (lbLink) lbLink.href = '#';
-    lbCur.textContent   = idx + 1;
-    lbDots.querySelectorAll('.lb-dot').forEach((dot, j) => dot.classList.toggle('active', j === idx));
+  /* ── Build dots for lightbox ── */
+  function buildDots(count) {
+    lbDots.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement('button');
+      d.className = 'lb-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', `Image ${i + 1}`);
+      d.addEventListener('click', () => goToImg(i));
+      lbDots.appendChild(d);
+    }
   }
 
-  function open(i) {
-    goTo(i);
+  /* ── Navigate within the active project ── */
+  function goToImg(i) {
+    const total = activeProject.images.length;
+    imgIdx = (i + total) % total;
+    const src = `assets/img/${activeProject.folder}/${activeProject.images[imgIdx]}`;
+    lbImg.classList.add('loading');
+    const tmp = new Image();
+    tmp.onload = () => { lbImg.src = src; lbImg.alt = activeProject.title; lbImg.classList.remove('loading'); };
+    tmp.src = src;
+    lbCur.textContent   = imgIdx + 1;
+    lbTotal.textContent = total;
+    lbDots.querySelectorAll('.lb-dot').forEach((dot, j) => dot.classList.toggle('active', j === imgIdx));
+  }
+
+  /* ── Open lightbox for a project ── */
+  function openProject(projectIndex) {
+    activeProject = projects[projectIndex];
+    imgIdx = 0;
+    lbTitle.textContent = activeProject.title;
+    lbSub.textContent   = activeProject.type || 'Interior Design';
+    if (lbLink) lbLink.href = '#';
+    buildDots(activeProject.images.length);
+    goToImg(0);
     lightbox.hidden = false;
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     lbClose.focus();
   }
-  function close() {
+
+  function closeLightbox() {
     lightbox.hidden = true;
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    activeProject = null;
   }
 
-  grid.addEventListener('click', e => {
-    const item = e.target.closest('.portfolio-item');
-    if (item) open(+item.dataset.index);
-  });
-
-  lbClose.addEventListener('click', close);
-  overlay.addEventListener('click', close);
-  lbPrev.addEventListener('click', () => goTo(idx - 1));
-  lbNext.addEventListener('click', () => goTo(idx + 1));
+  /* ── Wire up controls ── */
+  lbClose.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', () => goToImg(imgIdx - 1));
+  lbNext.addEventListener('click', () => goToImg(imgIdx + 1));
 
   document.addEventListener('keydown', e => {
     if (lightbox.hidden) return;
-    if (e.key === 'Escape')     close();
-    if (e.key === 'ArrowLeft')  goTo(idx - 1);
-    if (e.key === 'ArrowRight') goTo(idx + 1);
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  goToImg(imgIdx - 1);
+    if (e.key === 'ArrowRight') goToImg(imgIdx + 1);
   });
 
   /* Swipe support */
@@ -217,8 +200,48 @@ document.addEventListener('DOMContentLoaded', () => {
   lightbox.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   lightbox.addEventListener('touchend',   e => {
     const diff = tx - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(idx + (diff > 0 ? 1 : -1));
+    if (Math.abs(diff) > 50) goToImg(imgIdx + (diff > 0 ? 1 : -1));
   });
+
+  /* ── Click on grid card ── */
+  grid.addEventListener('click', e => {
+    const item = e.target.closest('.portfolio-item');
+    if (item) openProject(+item.dataset.index);
+  });
+
+  /* ── Fetch projects and build grid ── */
+  fetch('assets/data/projects.json')
+    .then(r => r.json())
+    .then(data => {
+      projects = data;
+
+      projects.forEach((project, i) => {
+        const coverSrc = `assets/img/${project.folder}/${project.cover}`;
+        const typeLabel = project.type || 'Interior Design';
+
+        const fig = document.createElement('figure');
+        fig.className = 'portfolio-item';
+        fig.dataset.index = i;
+        fig.setAttribute('data-aos', '');
+        fig.innerHTML = `
+          <img src="${coverSrc}" alt="${project.title}" loading="lazy">
+          <figcaption>
+            <div class="fig-text">
+              <h4>${project.title}</h4>
+              <p>${typeLabel}</p>
+            </div>
+            ${project.images.length > 1 ? `<span class="img-count">+${project.images.length - 1} more</span>` : ''}
+          </figcaption>`;
+        grid.appendChild(fig);
+      });
+
+      /* Re-observe new portfolio items for scroll reveal */
+      grid.querySelectorAll('[data-aos]').forEach(el => aosIO.observe(el));
+    })
+    .catch(err => {
+      console.error('Could not load projects.json:', err);
+      grid.innerHTML = '<p style="color:var(--gold);text-align:center;padding:2rem">Projects loading…</p>';
+    });
 
   /* ── Contact form → opens WhatsApp ── */
   window.handleFormSubmit = function(e) {

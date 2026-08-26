@@ -364,6 +364,12 @@ a.about-info-item:hover { border-color:var(--gold); transform:translateY(-2px); 
 .fig-text { flex:1; }
 .portfolio-item h4 { font-family:'Inter',sans-serif; font-size:.85rem; font-weight:600; color:#fff; margin-bottom:.2rem; }
 .portfolio-item p { font-size:.7rem; color:var(--gold-lt); }
+.img-count {
+  font-size:.65rem; font-weight:600; letter-spacing:.04em;
+  background:var(--gold); color:#0b0e13;
+  padding:.15rem .5rem; border-radius:20px;
+  flex-shrink:0; align-self:center; margin-left:.4rem;
+}
 .fig-link {
   width:30px; height:30px; border-radius:50%;
   background:var(--gold); color:#0e0c08;

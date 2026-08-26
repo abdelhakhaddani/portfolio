@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Hotel Lobby Design",
+    "folder": "Hotel Lobby Design",
+    "images": ["lobby.jpg"],
+    "cover": "lobby.jpg"
+  },
+  {
+    "title": "Majliss Traditional Lounge",
+    "folder": "Majliss Traditional Lounge",
+    "images": ["majliss.jpg"],
+    "cover": "majliss.jpg"
+  },
+  {
+    "title": "Royal Hotel Suite",
+    "folder": "Royal Hotel Suite",
+    "images": ["hotel-room.jpg"],
+    "cover": "hotel-room.jpg"
+  },
+  {
+    "title": "Grand Entrance Hall",
+    "folder": "Grand Entrance Hall",
+    "images": ["hall-entree.jpg"],
+    "cover": "hall-entree.jpg"
+  },
+  {
+    "title": "Modern Dining Room",
+    "folder": "Modern Dining Room",
+    "images": ["salle-a-manger.jpg"],
+    "cover": "salle-a-manger.jpg"
+  },
+  {
+    "title": "Architectural Perspective I",
+    "folder": "Architectural Perspective I",
+    "images": ["perspective-1.jpg"],
+    "cover": "perspective-1.jpg"
+  },
+  {
+    "title": "Architectural Perspective II",
+    "folder": "Architectural Perspective II",
+    "images": ["perspective-2.jpg"],
+    "cover": "perspective-2.jpg"
+  },
+  {
+    "title": "Architectural Perspective III",
+    "folder": "Architectural Perspective III",
+    "images": ["perspective-3.jpg"],
+    "cover": "perspective-3.jpg"
+  }
+]
