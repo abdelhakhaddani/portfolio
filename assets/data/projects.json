@@ -46,5 +46,11 @@
     "folder": "Architectural Perspective III",
     "images": ["perspective-3.jpg"],
     "cover": "perspective-3.jpg"
+  },
+  {
+    "title": "Minister's Office",
+    "folder": "Minister's office",
+    "images": ["001.jpg", "002.jpg", "003.jpg", "004.jpg"],
+    "cover": "001.jpg"
   }
 ]
