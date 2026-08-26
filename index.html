@@ -49,158 +49,226 @@
     <div class="hero-glow glow-1"></div>
     <div class="hero-glow glow-2"></div>
 
-    <!-- Architectural floor plan blueprint background -->
-    <div class="hero-blueprint">
-      <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <!-- Architectural blueprint background (inline SVG, purely decorative) -->
+    <div class="hero-blueprint" aria-hidden="true">
+      <svg viewBox="0 0 1440 860" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <pattern id="fg" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M20,0 L0,0 0,20" fill="none" stroke="rgba(111,168,255,0.05)" stroke-width=".5"/>
+          <pattern id="bp-sm" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M20 0H0V20" fill="none" stroke="rgba(111,168,255,0.04)" stroke-width=".5"/>
           </pattern>
-          <pattern id="mg" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M100,0 L0,0 0,100" fill="none" stroke="rgba(111,168,255,0.07)" stroke-width=".8"/>
+          <pattern id="bp-lg" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M100 0H0V100" fill="none" stroke="rgba(111,168,255,0.06)" stroke-width=".8"/>
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#fg)"/>
-        <rect width="100%" height="100%" fill="url(#mg)"/>
 
-        <!-- ═══ FLOOR PLAN: Building envelope ═══ -->
-        <rect x="400" y="55" width="760" height="585" fill="none" stroke="rgba(201,162,75,0.22)" stroke-width="4"/>
-        <!-- Horizontal partition -->
-        <line x1="400" y1="355" x2="1160" y2="355" stroke="rgba(201,162,75,0.15)" stroke-width="2.5"/>
-        <!-- Main vertical partition -->
-        <line x1="690" y1="55" x2="690" y2="640" stroke="rgba(201,162,75,0.15)" stroke-width="2.5"/>
-        <!-- Lower-right vertical -->
-        <line x1="930" y1="355" x2="930" y2="640" stroke="rgba(201,162,75,0.13)" stroke-width="2"/>
-        <!-- En-suite sub-walls -->
-        <line x1="930" y1="55" x2="930" y2="240" stroke="rgba(201,162,75,0.11)" stroke-width="1.8"/>
-        <line x1="930" y1="240" x2="1160" y2="240" stroke="rgba(201,162,75,0.11)" stroke-width="1.8"/>
+        <!-- Fine CAD grid (full field) -->
+        <rect width="1440" height="860" fill="url(#bp-sm)"/>
+        <rect width="1440" height="860" fill="url(#bp-lg)"/>
 
-        <!-- WINDOWS -->
-        <line x1="450" y1="55" x2="640" y2="55" stroke="rgba(111,168,255,0.5)" stroke-width="5"/>
-        <line x1="450" y1="48" x2="450" y2="62" stroke="rgba(111,168,255,0.32)" stroke-width="1"/>
-        <line x1="545" y1="48" x2="545" y2="62" stroke="rgba(111,168,255,0.32)" stroke-width="1"/>
-        <line x1="640" y1="48" x2="640" y2="62" stroke="rgba(111,168,255,0.32)" stroke-width="1"/>
-        <line x1="740" y1="55" x2="920" y2="55" stroke="rgba(111,168,255,0.44)" stroke-width="5"/>
-        <line x1="740" y1="48" x2="740" y2="62" stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
-        <line x1="830" y1="48" x2="830" y2="62" stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
-        <line x1="920" y1="48" x2="920" y2="62" stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
-        <line x1="400" y1="420" x2="400" y2="580" stroke="rgba(111,168,255,0.4)" stroke-width="5"/>
-        <line x1="393" y1="420" x2="407" y2="420" stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
-        <line x1="393" y1="500" x2="407" y2="500" stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
-        <line x1="393" y1="580" x2="407" y2="580" stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
-        <line x1="1160" y1="395" x2="1160" y2="595" stroke="rgba(111,168,255,0.34)" stroke-width="5"/>
-        <line x1="1153" y1="395" x2="1167" y2="395" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
-        <line x1="1153" y1="595" x2="1167" y2="595" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
+        <!-- ══════════════════════════════════════
+             FLOOR PLAN  (x 504–1400, y 80–780)
+        ══════════════════════════════════════ -->
 
-        <!-- DOORS -->
-        <line x1="400" y1="170" x2="470" y2="170" stroke="rgba(201,162,75,0.18)" stroke-width="1.2"/>
-        <path d="M400,170 A70,70 0 0,0 400,240" fill="rgba(201,162,75,0.04)" stroke="rgba(201,162,75,0.16)" stroke-width="1" stroke-dasharray="5,3"/>
-        <line x1="510" y1="355" x2="510" y2="285" stroke="rgba(201,162,75,0.15)" stroke-width="1.2"/>
-        <path d="M510,355 A70,70 0 0,1 580,355" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.14)" stroke-width="1" stroke-dasharray="5,3"/>
-        <line x1="690" y1="150" x2="755" y2="150" stroke="rgba(201,162,75,0.14)" stroke-width="1.2"/>
-        <path d="M690,150 A65,65 0 0,0 690,215" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.13)" stroke-width="1" stroke-dasharray="5,3"/>
-        <line x1="690" y1="415" x2="750" y2="415" stroke="rgba(201,162,75,0.13)" stroke-width="1.2"/>
-        <path d="M690,415 A60,60 0 0,0 690,475" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.12)" stroke-width="1" stroke-dasharray="5,3"/>
-        <line x1="930" y1="410" x2="930" y2="465" stroke="rgba(201,162,75,0.12)" stroke-width="1.2"/>
-        <path d="M930,410 A55,55 0 0,1 985,410" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.11)" stroke-width="1" stroke-dasharray="5,3"/>
+        <!-- Outer building envelope — stroke-dashoffset animated -->
+        <rect class="bp-outer-wall" x="504" y="80" width="896" height="700"
+              fill="none" stroke="rgba(111,168,255,0.28)" stroke-width="4"/>
+        <!-- Inner wall face (double-wall thickness indicator) -->
+        <rect x="520" y="96" width="864" height="668"
+              fill="none" stroke="rgba(111,168,255,0.11)" stroke-width="1.2"/>
 
-        <!-- ROOM LABELS -->
-        <text x="543" y="213" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">LIVING ROOM</text>
-        <text x="543" y="231" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">36 m²</text>
-        <text x="800" y="205" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">MASTER BEDROOM</text>
-        <text x="800" y="223" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">42 m²</text>
-        <text x="1044" y="155" text-anchor="middle" fill="rgba(111,168,255,0.18)" font-size="8.5" font-family="monospace" letter-spacing="1.5">EN-SUITE</text>
-        <text x="543" y="506" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">KITCHEN</text>
-        <text x="543" y="524" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">28 m²</text>
-        <text x="808" y="506" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">BEDROOM 2</text>
-        <text x="808" y="524" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">22 m²</text>
-        <text x="1044" y="506" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">STUDY</text>
-        <text x="1044" y="524" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">18 m²</text>
-
-        <!-- DIMENSION LINES -->
-        <line x1="400" y1="26" x2="1160" y2="26" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
-        <line x1="400" y1="18" x2="400" y2="34" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
-        <line x1="1160" y1="18" x2="1160" y2="34" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
-        <text x="780" y="21" text-anchor="middle" fill="rgba(111,168,255,0.28)" font-size="8" font-family="monospace">19.00 m</text>
-        <line x1="400" y1="38" x2="690" y2="38" stroke="rgba(111,168,255,0.15)" stroke-width=".7"/>
-        <line x1="690" y1="32" x2="690" y2="44" stroke="rgba(111,168,255,0.15)" stroke-width=".7"/>
-        <text x="545" y="36" text-anchor="middle" fill="rgba(111,168,255,0.2)" font-size="7" font-family="monospace">7.25 m</text>
-        <line x1="690" y1="38" x2="1160" y2="38" stroke="rgba(111,168,255,0.15)" stroke-width=".7"/>
-        <text x="925" y="36" text-anchor="middle" fill="rgba(111,168,255,0.2)" font-size="7" font-family="monospace">11.75 m</text>
-        <line x1="1182" y1="55" x2="1182" y2="640" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
-        <line x1="1174" y1="55" x2="1190" y2="55" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
-        <line x1="1174" y1="640" x2="1190" y2="640" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
-        <text x="1198" y="352" text-anchor="middle" fill="rgba(111,168,255,0.28)" font-size="8" font-family="monospace" transform="rotate(90,1198,352)">14.63 m</text>
-
-        <!-- Section marker -->
-        <line x1="398" y1="210" x2="360" y2="210" stroke="rgba(201,162,75,0.28)" stroke-width="1" stroke-dasharray="8,3"/>
-        <circle cx="352" cy="210" r="9" fill="none" stroke="rgba(201,162,75,0.28)" stroke-width="1"/>
-        <text x="352" y="214" text-anchor="middle" fill="rgba(201,162,75,0.34)" font-size="7.5" font-family="monospace">A</text>
-
-        <!-- COMPASS ROSE -->
-        <g transform="translate(205,185)">
-          <circle cx="0" cy="0" r="54" fill="none" stroke="rgba(201,162,75,0.1)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="13" fill="none" stroke="rgba(201,162,75,0.18)" stroke-width="1"/>
-          <line x1="0" y1="-54" x2="0" y2="54" stroke="rgba(201,162,75,0.1)" stroke-width=".8"/>
-          <line x1="-54" y1="0" x2="54" y2="0" stroke="rgba(201,162,75,0.1)" stroke-width=".8"/>
-          <line x1="-38" y1="-38" x2="38" y2="38" stroke="rgba(201,162,75,0.05)" stroke-width=".6"/>
-          <line x1="38" y1="-38" x2="-38" y2="38" stroke="rgba(201,162,75,0.05)" stroke-width=".6"/>
-          <polygon points="0,-54 7,-28 0,-36 -7,-28" fill="rgba(201,162,75,0.6)"/>
-          <polygon points="0,-36 7,-28 0,-18 -7,-28" fill="rgba(201,162,75,0.22)"/>
-          <text x="0" y="-64" text-anchor="middle" fill="rgba(201,162,75,0.6)" font-size="14" font-family="monospace" font-weight="bold">N</text>
-          <text x="0" y="76" text-anchor="middle" fill="rgba(201,162,75,0.3)" font-size="10" font-family="monospace">S</text>
-          <text x="-66" y="4" text-anchor="middle" fill="rgba(201,162,75,0.3)" font-size="10" font-family="monospace">W</text>
-          <text x="66" y="4" text-anchor="middle" fill="rgba(201,162,75,0.3)" font-size="10" font-family="monospace">E</text>
+        <!-- Interior partitions -->
+        <g class="bp-partitions">
+          <!-- Main horizontal at y=430 -->
+          <line x1="520"  y1="430" x2="1384" y2="430" stroke="rgba(111,168,255,0.22)" stroke-width="2.5"/>
+          <!-- Left vertical at x=762 (full height) -->
+          <line x1="762"  y1="96"  x2="762"  y2="748" stroke="rgba(111,168,255,0.2)"  stroke-width="2.5"/>
+          <!-- Upper-right vertical at x=1072 (top to horizontal) -->
+          <line x1="1072" y1="96"  x2="1072" y2="430" stroke="rgba(111,168,255,0.17)" stroke-width="2"/>
+          <!-- En-suite horizontal at y=288 -->
+          <line x1="1072" y1="288" x2="1384" y2="288" stroke="rgba(111,168,255,0.14)" stroke-width="1.8"/>
+          <!-- Lower-right vertical at x=1232 -->
+          <line x1="1232" y1="430" x2="1232" y2="748" stroke="rgba(111,168,255,0.14)" stroke-width="1.8"/>
+          <!-- Entry alcove at x=720 (lower section) -->
+          <line x1="720"  y1="430" x2="720"  y2="748" stroke="rgba(111,168,255,0.13)" stroke-width="1.6"/>
         </g>
 
-        <!-- SCALE BAR -->
-        <g transform="translate(95,540)">
-          <text x="0" y="-14" fill="rgba(111,168,255,0.24)" font-size="7.5" font-family="monospace" letter-spacing="1.5">SCALE  1:100</text>
-          <rect x="0"   y="-5" width="50" height="9" fill="rgba(111,168,255,0.15)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
-          <rect x="50"  y="-5" width="50" height="9" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
-          <rect x="100" y="-5" width="50" height="9" fill="rgba(111,168,255,0.15)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
-          <rect x="150" y="-5" width="50" height="9" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
-          <text x="0"   y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">0</text>
-          <text x="44"  y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">5m</text>
-          <text x="94"  y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">10m</text>
-          <text x="192" y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">20m</text>
+        <!-- Windows (thick coloured segment on wall + tick marks) -->
+        <g class="bp-windows">
+          <!-- Top – living room -->
+          <line x1="558" y1="80"   x2="706" y2="80"   stroke="rgba(111,168,255,0.55)" stroke-width="5"/>
+          <line x1="558" y1="72"   x2="558" y2="88"   stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
+          <line x1="632" y1="72"   x2="632" y2="88"   stroke="rgba(111,168,255,0.18)" stroke-width="1"/>
+          <line x1="706" y1="72"   x2="706" y2="88"   stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
+          <!-- Top – master bedroom -->
+          <line x1="808" y1="80"   x2="1022" y2="80"  stroke="rgba(111,168,255,0.48)" stroke-width="5"/>
+          <line x1="808" y1="72"   x2="808"  y2="88"  stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
+          <line x1="915" y1="72"   x2="915"  y2="88"  stroke="rgba(111,168,255,0.16)" stroke-width="1"/>
+          <line x1="1022" y1="72"  x2="1022" y2="88"  stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
+          <!-- Right wall – master bedroom -->
+          <line x1="1400" y1="184" x2="1400" y2="370" stroke="rgba(111,168,255,0.42)" stroke-width="5"/>
+          <line x1="1392" y1="184" x2="1408" y2="184" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
+          <line x1="1392" y1="277" x2="1408" y2="277" stroke="rgba(111,168,255,0.15)" stroke-width="1"/>
+          <line x1="1392" y1="370" x2="1408" y2="370" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
+          <!-- Bottom – kitchen -->
+          <line x1="836" y1="780"  x2="1018" y2="780" stroke="rgba(111,168,255,0.38)" stroke-width="5"/>
+          <line x1="836" y1="772"  x2="836"  y2="788" stroke="rgba(111,168,255,0.2)"  stroke-width="1"/>
+          <line x1="1018" y1="772" x2="1018" y2="788" stroke="rgba(111,168,255,0.2)"  stroke-width="1"/>
         </g>
 
-        <!-- CAD CROSSHAIR -->
-        <g transform="translate(268,430)" stroke="rgba(201,162,75,0.22)" stroke-width="1">
-          <circle cx="0" cy="0" r="20" fill="none"/>
-          <circle cx="0" cy="0" r="3" fill="none"/>
-          <line x1="-32" y1="0" x2="-23" y2="0"/>
-          <line x1="23" y1="0" x2="32" y2="0"/>
-          <line x1="0" y1="-32" x2="0" y2="-23"/>
-          <line x1="0" y1="23" x2="0" y2="32"/>
+        <!-- Doors (jamb lines + dashed swing arc) -->
+        <g class="bp-doors">
+          <!-- Front door: left wall y=558–638 -->
+          <line x1="504" y1="558" x2="520" y2="558" stroke="rgba(111,168,255,0.2)"  stroke-width="1.5"/>
+          <line x1="504" y1="638" x2="520" y2="638" stroke="rgba(111,168,255,0.2)"  stroke-width="1.5"/>
+          <line x1="520" y1="558" x2="520" y2="638" stroke="rgba(201,162,75,0.22)"  stroke-width="1.2"/>
+          <path d="M520,558 A80,80 0 0,1 520,638" fill="rgba(201,162,75,0.03)"
+                stroke="rgba(201,162,75,0.17)" stroke-width="1" stroke-dasharray="5,3"/>
+          <!-- Living → hall: horizontal partition, x=632–704 -->
+          <line x1="632" y1="420" x2="632" y2="440" stroke="rgba(111,168,255,0.18)"  stroke-width="1.5"/>
+          <line x1="704" y1="420" x2="704" y2="440" stroke="rgba(111,168,255,0.18)"  stroke-width="1.5"/>
+          <line x1="632" y1="430" x2="632" y2="358" stroke="rgba(201,162,75,0.2)"    stroke-width="1.2"/>
+          <path d="M632,430 A72,72 0 0,0 704,430"   fill="rgba(201,162,75,0.03)"
+                stroke="rgba(201,162,75,0.15)" stroke-width="1" stroke-dasharray="5,3"/>
+          <!-- Master → bathroom: x=762, y=302–374 -->
+          <line x1="752" y1="302" x2="772" y2="302" stroke="rgba(111,168,255,0.17)"  stroke-width="1.5"/>
+          <line x1="762" y1="302" x2="762" y2="374" stroke="rgba(201,162,75,0.18)"   stroke-width="1.2"/>
+          <path d="M762,302 A72,72 0 0,1 762,374"   fill="rgba(201,162,75,0.02)"
+                stroke="rgba(201,162,75,0.14)" stroke-width="1" stroke-dasharray="5,3"/>
+          <!-- Kitchen → bedroom 2: x=1072, y=492–564 -->
+          <line x1="1062" y1="492" x2="1082" y2="492" stroke="rgba(111,168,255,0.15)" stroke-width="1.5"/>
+          <line x1="1072" y1="492" x2="1072" y2="564" stroke="rgba(201,162,75,0.16)"  stroke-width="1.2"/>
+          <path d="M1072,492 A72,72 0 0,1 1072,564" fill="rgba(201,162,75,0.02)"
+                stroke="rgba(201,162,75,0.12)" stroke-width="1" stroke-dasharray="5,3"/>
+        </g>
+
+        <!-- Room labels + areas -->
+        <g class="bp-labels" font-family="monospace">
+          <text x="640"  y="262" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="11" letter-spacing="2.5">LIVING ROOM</text>
+          <text x="640"  y="280" text-anchor="middle" fill="rgba(111,168,255,0.13)" font-size="8">48 m²</text>
+          <text x="918"  y="188" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="11" letter-spacing="2.5">MASTER BEDROOM</text>
+          <text x="918"  y="206" text-anchor="middle" fill="rgba(111,168,255,0.13)" font-size="8">54 m²</text>
+          <text x="1232" y="196" text-anchor="middle" fill="rgba(111,168,255,0.18)" font-size="9"  letter-spacing="1.5">EN-SUITE</text>
+          <text x="1232" y="212" text-anchor="middle" fill="rgba(111,168,255,0.11)" font-size="7.5">18 m²</text>
+          <text x="1232" y="364" text-anchor="middle" fill="rgba(111,168,255,0.16)" font-size="9"  letter-spacing="1.5">WARDROBE</text>
+          <text x="618"  y="594" text-anchor="middle" fill="rgba(111,168,255,0.2)"  font-size="10" letter-spacing="2">ENTRY</text>
+          <text x="888"  y="582" text-anchor="middle" fill="rgba(111,168,255,0.2)"  font-size="10" letter-spacing="2">KITCHEN / DINING</text>
+          <text x="888"  y="600" text-anchor="middle" fill="rgba(111,168,255,0.12)" font-size="8">32 m²</text>
+          <text x="1150" y="582" text-anchor="middle" fill="rgba(111,168,255,0.2)"  font-size="10" letter-spacing="2">BEDROOM 2</text>
+          <text x="1150" y="600" text-anchor="middle" fill="rgba(111,168,255,0.12)" font-size="8">28 m²</text>
+          <text x="1320" y="590" text-anchor="middle" fill="rgba(111,168,255,0.17)" font-size="9"  letter-spacing="1.5">BATH</text>
+        </g>
+
+        <!-- Dimension lines with arrowheads -->
+        <g class="bp-dims" font-family="monospace">
+          <!-- Top overall -->
+          <line x1="504"  y1="48" x2="1400" y2="48"  stroke="rgba(111,168,255,0.25)" stroke-width=".8"/>
+          <line x1="504"  y1="38" x2="504"  y2="58"  stroke="rgba(111,168,255,0.25)" stroke-width=".8"/>
+          <line x1="1400" y1="38" x2="1400" y2="58"  stroke="rgba(111,168,255,0.25)" stroke-width=".8"/>
+          <polygon points="508,48 518,44 518,52"       fill="rgba(111,168,255,0.25)"/>
+          <polygon points="1396,48 1386,44 1386,52"    fill="rgba(111,168,255,0.25)"/>
+          <text x="952"  y="42" text-anchor="middle"  fill="rgba(111,168,255,0.3)"  font-size="9">22.40 m</text>
+          <!-- Sub-dim 1: left bay -->
+          <line x1="504" y1="62" x2="762"  y2="62"   stroke="rgba(111,168,255,0.16)" stroke-width=".7"/>
+          <line x1="504" y1="55" x2="504"  y2="69"   stroke="rgba(111,168,255,0.16)" stroke-width=".7"/>
+          <line x1="762" y1="55" x2="762"  y2="69"   stroke="rgba(111,168,255,0.16)" stroke-width=".7"/>
+          <text x="633" y="58" text-anchor="middle"   fill="rgba(111,168,255,0.2)"  font-size="7.5">6.45 m</text>
+          <!-- Sub-dim 2: mid bay -->
+          <line x1="762"  y1="62" x2="1072" y2="62"  stroke="rgba(111,168,255,0.16)" stroke-width=".7"/>
+          <line x1="1072" y1="55" x2="1072" y2="69"  stroke="rgba(111,168,255,0.16)" stroke-width=".7"/>
+          <text x="917" y="58" text-anchor="middle"   fill="rgba(111,168,255,0.2)"  font-size="7.5">7.75 m</text>
+          <!-- Sub-dim 3: right bay -->
+          <line x1="1072" y1="62" x2="1400" y2="62"  stroke="rgba(111,168,255,0.16)" stroke-width=".7"/>
+          <line x1="1400" y1="55" x2="1400" y2="69"  stroke="rgba(111,168,255,0.16)" stroke-width=".7"/>
+          <text x="1236" y="58" text-anchor="middle"  fill="rgba(111,168,255,0.2)"  font-size="7.5">8.20 m</text>
+          <!-- Right overall -->
+          <line x1="1428" y1="80"  x2="1428" y2="780" stroke="rgba(111,168,255,0.25)" stroke-width=".8"/>
+          <line x1="1418" y1="80"  x2="1438" y2="80"  stroke="rgba(111,168,255,0.25)" stroke-width=".8"/>
+          <line x1="1418" y1="780" x2="1438" y2="780" stroke="rgba(111,168,255,0.25)" stroke-width=".8"/>
+          <polygon points="1428,84 1424,94 1432,94"    fill="rgba(111,168,255,0.25)"/>
+          <polygon points="1428,776 1424,766 1432,766" fill="rgba(111,168,255,0.25)"/>
+          <text x="1446" y="434" text-anchor="middle"  fill="rgba(111,168,255,0.28)" font-size="9"
+                transform="rotate(90,1446,434)">17.50 m</text>
+        </g>
+
+        <!-- Section cut A-A marker -->
+        <line x1="504" y1="263" x2="460" y2="263" stroke="rgba(201,162,75,0.3)"  stroke-width="1.2" stroke-dasharray="8,4"/>
+        <circle cx="448" cy="263" r="12" fill="none" stroke="rgba(201,162,75,0.3)" stroke-width="1"/>
+        <text x="448" y="267" text-anchor="middle" fill="rgba(201,162,75,0.38)" font-size="9" font-family="monospace" font-weight="bold">A</text>
+
+        <!-- Spot elevation diamonds at partition intersections -->
+        <g fill="rgba(201,162,75,0.2)">
+          <polygon points="640,425 645,430 640,435 635,430"/>
+          <polygon points="762,424 767,429 762,434 757,429"/>
+          <polygon points="1072,424 1077,429 1072,434 1067,429"/>
+        </g>
+
+        <!-- ══ COMPASS ROSE — gold accent, lower-left ══ -->
+        <g class="bp-compass" transform="translate(200,648)">
+          <circle cx="0" cy="0" r="50"  fill="none" stroke="rgba(201,162,75,0.11)" stroke-width="1"/>
+          <circle cx="0" cy="0" r="12"  fill="none" stroke="rgba(201,162,75,0.22)" stroke-width="1"/>
+          <line x1="0"  y1="-50" x2="0"   y2="50"  stroke="rgba(201,162,75,0.09)" stroke-width=".8"/>
+          <line x1="-50" y1="0"  x2="50"  y2="0"   stroke="rgba(201,162,75,0.09)" stroke-width=".8"/>
+          <line x1="-36" y1="-36" x2="36" y2="36"  stroke="rgba(201,162,75,0.05)" stroke-width=".6"/>
+          <line x1="36"  y1="-36" x2="-36" y2="36" stroke="rgba(201,162,75,0.05)" stroke-width=".6"/>
+          <!-- North pointer (solid gold) -->
+          <polygon points="0,-50 6,-25 0,-33 -6,-25"  fill="rgba(201,162,75,0.72)"/>
+          <!-- S / E / W pointers (dim) -->
+          <polygon points="0,50 6,25 0,33 -6,25"      fill="rgba(201,162,75,0.14)"/>
+          <polygon points="50,0 25,6 33,0 25,-6"      fill="rgba(201,162,75,0.14)"/>
+          <polygon points="-50,0 -25,6 -33,0 -25,-6"  fill="rgba(201,162,75,0.14)"/>
+          <!-- Cardinal labels -->
+          <text x="0"   y="-60" text-anchor="middle" fill="rgba(201,162,75,0.72)" font-size="14" font-family="monospace" font-weight="bold">N</text>
+          <text x="0"   y="72"  text-anchor="middle" fill="rgba(201,162,75,0.26)" font-size="10" font-family="monospace">S</text>
+          <text x="-62" y="4"   text-anchor="middle" fill="rgba(201,162,75,0.26)" font-size="10" font-family="monospace">W</text>
+          <text x="62"  y="4"   text-anchor="middle" fill="rgba(201,162,75,0.26)" font-size="10" font-family="monospace">E</text>
+        </g>
+
+        <!-- CAD crosshair -->
+        <g transform="translate(310,310)" stroke="rgba(201,162,75,0.18)" stroke-width="1">
+          <circle cx="0" cy="0" r="22" fill="none"/>
+          <circle cx="0" cy="0" r="3"  fill="none"/>
+          <line x1="-36" y1="0"  x2="-25" y2="0"/>
+          <line x1="25"  y1="0"  x2="36"  y2="0"/>
+          <line x1="0"   y1="-36" x2="0"  y2="-25"/>
+          <line x1="0"   y1="25"  x2="0"  y2="36"/>
           <circle cx="0" cy="0" r="1.5" fill="rgba(201,162,75,0.4)"/>
         </g>
 
-        <!-- TITLE BLOCK -->
-        <g transform="translate(44,598)">
-          <text x="0" y="0"  fill="rgba(201,162,75,0.32)" font-size="8.5" font-family="monospace" letter-spacing="2">ARCHITECTURAL FLOOR PLAN</text>
-          <text x="0" y="16" fill="rgba(111,168,255,0.2)"  font-size="7"   font-family="monospace" letter-spacing="1">DWG: AH-FP-2024-001  ·  REV: A</text>
-          <text x="0" y="30" fill="rgba(111,168,255,0.15)" font-size="6.5" font-family="monospace">AutoCAD 2024  ·  Revit Architecture</text>
+        <!-- Scale bar -->
+        <g transform="translate(68,764)">
+          <text x="0" y="-12" fill="rgba(111,168,255,0.24)" font-size="7.5" font-family="monospace" letter-spacing="1.5">SCALE  1:100</text>
+          <rect x="0"   y="-4" width="44" height="8" fill="rgba(111,168,255,0.14)" stroke="rgba(111,168,255,0.3)"  stroke-width=".7"/>
+          <rect x="44"  y="-4" width="44" height="8" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.3)"  stroke-width=".7"/>
+          <rect x="88"  y="-4" width="44" height="8" fill="rgba(111,168,255,0.14)" stroke="rgba(111,168,255,0.3)"  stroke-width=".7"/>
+          <rect x="132" y="-4" width="44" height="8" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.3)"  stroke-width=".7"/>
+          <text x="0"   y="12" fill="rgba(111,168,255,0.22)" font-size="6.5" font-family="monospace">0</text>
+          <text x="38"  y="12" fill="rgba(111,168,255,0.22)" font-size="6.5" font-family="monospace">5m</text>
+          <text x="82"  y="12" fill="rgba(111,168,255,0.22)" font-size="6.5" font-family="monospace">10m</text>
+          <text x="166" y="12" fill="rgba(111,168,255,0.22)" font-size="6.5" font-family="monospace">20m</text>
         </g>
 
-        <!-- TECH LABELS -->
-        <g transform="translate(44,658)" fill="rgba(111,168,255,0.16)" font-size="8" font-family="monospace" letter-spacing="1.5">
+        <!-- Title block -->
+        <g transform="translate(40,798)">
+          <text x="0" y="0"  fill="rgba(201,162,75,0.3)"  font-size="9"   font-family="monospace" letter-spacing="2.5">ARCHITECTURAL FLOOR PLAN</text>
+          <text x="0" y="16" fill="rgba(111,168,255,0.19)" font-size="7.5" font-family="monospace" letter-spacing=".8">DWG: AH-FP-2024-001  ·  REV: A  ·  AutoCAD / Revit</text>
+        </g>
+
+        <!-- Tool stack -->
+        <g transform="translate(40,840)" fill="rgba(111,168,255,0.14)" font-size="8" font-family="monospace" letter-spacing="1.5">
           <text x="0">AutoCAD</text>
-          <text x="90"  fill="rgba(201,162,75,0.22)">•</text>
-          <text x="106">Revit</text>
-          <text x="162" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="178">3ds Max</text>
-          <text x="254" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="270">V-Ray</text>
-          <text x="322" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="338">Cinema 4D</text>
-          <text x="430" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="446">Lumion</text>
-          <text x="504" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="520">SketchUp</text>
+          <text x="82"  fill="rgba(201,162,75,0.2)">·</text>
+          <text x="90">Revit</text>
+          <text x="142" fill="rgba(201,162,75,0.2)">·</text>
+          <text x="150">3ds Max</text>
+          <text x="222" fill="rgba(201,162,75,0.2)">·</text>
+          <text x="230">V-Ray</text>
+          <text x="278" fill="rgba(201,162,75,0.2)">·</text>
+          <text x="286">Cinema 4D</text>
+          <text x="374" fill="rgba(201,162,75,0.2)">·</text>
+          <text x="382">Lumion</text>
+          <text x="436" fill="rgba(201,162,75,0.2)">·</text>
+          <text x="444">SketchUp</text>
         </g>
-
       </svg>
     </div>
   </div>

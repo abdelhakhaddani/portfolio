@@ -149,6 +149,33 @@ strong { color:var(--text); }
 }
 .hero-blueprint svg { width:100%; height:100%; }
 
+/* ── Blueprint element animations ── */
+.bp-outer-wall {
+  stroke-dasharray: 3200;
+  stroke-dashoffset: 3200;
+  animation: bp-wall-draw 2.6s cubic-bezier(.4,0,.2,1) .2s both;
+}
+.bp-partitions { opacity:0; animation: bp-fade .9s ease-out 1.5s both; }
+.bp-windows    { opacity:0; animation: bp-fade .9s ease-out 1.9s both; }
+.bp-doors      { opacity:0; animation: bp-fade .9s ease-out 2.1s both; }
+.bp-labels     { opacity:0; animation: bp-fade .9s ease-out 2.3s both; }
+.bp-dims       { opacity:0; animation: bp-fade .9s ease-out 2.5s both; }
+.bp-compass    { opacity:0; animation: bp-fade .9s ease-out 2.7s both; }
+
+@keyframes bp-wall-draw { to { stroke-dashoffset: 0; } }
+@keyframes bp-fade      { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-outer-wall { animation:none; stroke-dasharray:none; stroke-dashoffset:0; }
+  .bp-partitions,.bp-windows,.bp-doors,
+  .bp-labels,.bp-dims,.bp-compass { animation:none; opacity:1; }
+}
+/* Mobile: thin out the blueprint so it doesn't crowd text */
+@media (max-width:600px) {
+  .hero-blueprint { opacity:.5; }
+  .bp-labels,.bp-dims { display:none; }
+}
+
 /* Logo watermark in hero */
 .logo-watermark {
   position:absolute;
