@@ -313,10 +313,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   /* ── Desktop: scroll-wheel zoom anywhere in the lightbox ── */
+  /* Fixed step per tick (15%) + throttle (100 ms) to prevent runaway zoom */
+  const ZOOM_STEP   = 1.15;          // +15 % per scroll click
+  const ZOOM_DELAY  = 100;           // ms between accepted wheel ticks
+  let   lastWheel   = 0;
+
   lightbox.addEventListener('wheel', e => {
     if (lightbox.hidden) return;
     e.preventDefault();
-    const factor = e.deltaY < 0 ? 1.12 : 0.89;
+
+    const now = Date.now();
+    if (now - lastWheel < ZOOM_DELAY) return;   // skip rapid repeat ticks
+    lastWheel = now;
+
+    /* Math.sign() so trackpad inertia (tiny deltas) still gives one clean step */
+    const factor = e.deltaY < 0 ? ZOOM_STEP : (1 / ZOOM_STEP);
     pivotZoom(zoomScale * factor, e.clientX, e.clientY);
   }, { passive: false });
 
