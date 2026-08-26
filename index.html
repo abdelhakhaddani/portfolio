@@ -19,13 +19,11 @@
 <header id="header">
   <nav class="navbar">
     <a href="#home" class="logo" aria-label="Abdelhak Haddani">
-      <svg viewBox="0 0 100 100" class="logo-mark" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5 L87 26 L50 47 L13 26 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M13 26 L50 47 L50 93 L13 72 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M87 26 L87 72 L50 93 L50 47 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <line x1="50" y1="47" x2="50" y2="93" stroke="currentColor" stroke-width="2"/>
-        <polyline points="13,41 50,62 87,41" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
-        <polyline points="13,57 50,78 87,57" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
+      <svg viewBox="20 14 164 218" class="logo-mark" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 26 152 L 26 54 Q 26 20 100 20 Q 174 20 174 56 L 174 113 Q 174 150 134 150 L 67 150 Q 51 150 51 134 Q 51 118 67 118 L 134 118"
+              stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 167 174 Q 167 162 130 162 L 72 162 Q 29 162 29 192 Q 29 222 72 222 L 130 222 Q 167 222 167 210"
+              stroke="currentColor" stroke-width="17" stroke-linecap="round"/>
       </svg>
     </a>
     <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">
@@ -51,158 +49,158 @@
     <div class="hero-glow glow-1"></div>
     <div class="hero-glow glow-2"></div>
 
-    <!-- Large logo watermark inspired by the logo mark -->
-    <div class="logo-watermark" aria-hidden="true">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5 L87 26 L50 47 L13 26 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M13 26 L50 47 L50 93 L13 72 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M87 26 L87 72 L50 93 L50 47 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <line x1="50" y1="47" x2="50" y2="93" stroke="currentColor" stroke-width="2"/>
-        <polyline points="13,41 50,62 87,41" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
-        <polyline points="13,57 50,78 87,57" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
-      </svg>
-    </div>
-
-    <!-- Architectural / drafting blueprint background behind the name -->
+    <!-- Architectural floor plan blueprint background -->
     <div class="hero-blueprint">
       <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <!-- Fine dot grid -->
-          <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-            <circle cx="14" cy="14" r=".7" fill="rgba(111,168,255,0.14)"/>
+          <pattern id="fg" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M20,0 L0,0 0,20" fill="none" stroke="rgba(111,168,255,0.05)" stroke-width=".5"/>
           </pattern>
-          <!-- Major grid lines -->
-          <pattern id="majGrid" x="0" y="0" width="140" height="140" patternUnits="userSpaceOnUse">
-            <line x1="140" y1="0" x2="0" y2="0" stroke="rgba(111,168,255,0.06)" stroke-width=".6"/>
-            <line x1="0" y1="0" x2="0" y2="140" stroke="rgba(111,168,255,0.06)" stroke-width=".6"/>
+          <pattern id="mg" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M100,0 L0,0 0,100" fill="none" stroke="rgba(111,168,255,0.07)" stroke-width=".8"/>
           </pattern>
         </defs>
+        <rect width="100%" height="100%" fill="url(#fg)"/>
+        <rect width="100%" height="100%" fill="url(#mg)"/>
 
-        <!-- Grid backgrounds -->
-        <rect width="100%" height="100%" fill="url(#dots)"/>
-        <rect width="100%" height="100%" fill="url(#majGrid)"/>
+        <!-- ═══ FLOOR PLAN: Building envelope ═══ -->
+        <rect x="400" y="55" width="760" height="585" fill="none" stroke="rgba(201,162,75,0.22)" stroke-width="4"/>
+        <!-- Horizontal partition -->
+        <line x1="400" y1="355" x2="1160" y2="355" stroke="rgba(201,162,75,0.15)" stroke-width="2.5"/>
+        <!-- Main vertical partition -->
+        <line x1="690" y1="55" x2="690" y2="640" stroke="rgba(201,162,75,0.15)" stroke-width="2.5"/>
+        <!-- Lower-right vertical -->
+        <line x1="930" y1="355" x2="930" y2="640" stroke="rgba(201,162,75,0.13)" stroke-width="2"/>
+        <!-- En-suite sub-walls -->
+        <line x1="930" y1="55" x2="930" y2="240" stroke="rgba(201,162,75,0.11)" stroke-width="1.8"/>
+        <line x1="930" y1="240" x2="1160" y2="240" stroke="rgba(201,162,75,0.11)" stroke-width="1.8"/>
 
-        <!-- ══ LEFT: Floor plan ══ -->
-        <!-- Outer walls -->
-        <rect x="40" y="60" width="280" height="240" fill="none" stroke="rgba(201,162,75,0.14)" stroke-width="3.5"/>
-        <!-- Interior partitions -->
-        <line x1="180" y1="60"  x2="180" y2="220" stroke="rgba(201,162,75,0.09)" stroke-width="2"/>
-        <line x1="40"  y1="200" x2="320" y2="200" stroke="rgba(201,162,75,0.09)" stroke-width="2"/>
-        <!-- Door arc -->
-        <path d="M 180 200 A 40 40 0 0 1 220 160" fill="none" stroke="rgba(201,162,75,0.08)" stroke-width="1" stroke-dasharray="4,3"/>
-        <line x1="180" y1="200" x2="180" y2="160" stroke="rgba(201,162,75,0.07)" stroke-width="1"/>
-        <!-- Window on top wall -->
-        <line x1="220" y1="60" x2="290" y2="60" stroke="rgba(111,168,255,0.3)"  stroke-width="5"/>
-        <line x1="220" y1="55" x2="220" y2="65" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
-        <line x1="255" y1="55" x2="255" y2="65" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
-        <line x1="290" y1="55" x2="290" y2="65" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
-        <!-- Room labels -->
-        <text x="72"  y="140" fill="rgba(111,168,255,0.2)" font-size="9" font-family="monospace" letter-spacing="1.5">BEDROOM</text>
-        <text x="198" y="130" fill="rgba(111,168,255,0.2)" font-size="9" font-family="monospace" letter-spacing="1.5">STUDIO</text>
-        <text x="90"  y="234" fill="rgba(111,168,255,0.2)" font-size="9" font-family="monospace" letter-spacing="1.5">LIVING AREA</text>
-        <!-- Dimension lines -->
-        <line x1="40"  y1="42" x2="320" y2="42" stroke="rgba(111,168,255,0.18)" stroke-width=".8"/>
-        <line x1="40"  y1="36" x2="40"  y2="48" stroke="rgba(111,168,255,0.18)" stroke-width=".8"/>
-        <line x1="320" y1="36" x2="320" y2="48" stroke="rgba(111,168,255,0.18)" stroke-width=".8"/>
-        <text x="180" y="36" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="8" font-family="monospace">6.60 m</text>
-        <!-- Vertical dim -->
-        <line x1="338" y1="60"  x2="338" y2="300" stroke="rgba(111,168,255,0.18)" stroke-width=".8"/>
-        <line x1="332" y1="60"  x2="344" y2="60"  stroke="rgba(111,168,255,0.18)" stroke-width=".8"/>
-        <line x1="332" y1="300" x2="344" y2="300" stroke="rgba(111,168,255,0.18)" stroke-width=".8"/>
-        <text x="354" y="185" fill="rgba(111,168,255,0.22)" font-size="8" font-family="monospace" transform="rotate(90,354,185)">5.40 m</text>
+        <!-- WINDOWS -->
+        <line x1="450" y1="55" x2="640" y2="55" stroke="rgba(111,168,255,0.5)" stroke-width="5"/>
+        <line x1="450" y1="48" x2="450" y2="62" stroke="rgba(111,168,255,0.32)" stroke-width="1"/>
+        <line x1="545" y1="48" x2="545" y2="62" stroke="rgba(111,168,255,0.32)" stroke-width="1"/>
+        <line x1="640" y1="48" x2="640" y2="62" stroke="rgba(111,168,255,0.32)" stroke-width="1"/>
+        <line x1="740" y1="55" x2="920" y2="55" stroke="rgba(111,168,255,0.44)" stroke-width="5"/>
+        <line x1="740" y1="48" x2="740" y2="62" stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
+        <line x1="830" y1="48" x2="830" y2="62" stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
+        <line x1="920" y1="48" x2="920" y2="62" stroke="rgba(111,168,255,0.28)" stroke-width="1"/>
+        <line x1="400" y1="420" x2="400" y2="580" stroke="rgba(111,168,255,0.4)" stroke-width="5"/>
+        <line x1="393" y1="420" x2="407" y2="420" stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
+        <line x1="393" y1="500" x2="407" y2="500" stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
+        <line x1="393" y1="580" x2="407" y2="580" stroke="rgba(111,168,255,0.26)" stroke-width="1"/>
+        <line x1="1160" y1="395" x2="1160" y2="595" stroke="rgba(111,168,255,0.34)" stroke-width="5"/>
+        <line x1="1153" y1="395" x2="1167" y2="395" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
+        <line x1="1153" y1="595" x2="1167" y2="595" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
 
-        <!-- ══ CENTER: Compass rose ══ -->
-        <g transform="translate(600,90)">
-          <circle cx="0" cy="0" r="42" fill="none" stroke="rgba(201,162,75,0.12)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="10" fill="none" stroke="rgba(201,162,75,0.16)" stroke-width="1"/>
-          <line x1="0" y1="-42" x2="0" y2="42" stroke="rgba(201,162,75,0.12)" stroke-width=".9"/>
-          <line x1="-42" y1="0" x2="42" y2="0" stroke="rgba(201,162,75,0.12)" stroke-width=".9"/>
-          <line x1="-30" y1="-30" x2="30" y2="30" stroke="rgba(201,162,75,0.06)" stroke-width=".6"/>
-          <line x1="30" y1="-30" x2="-30" y2="30" stroke="rgba(201,162,75,0.06)" stroke-width=".6"/>
-          <polygon points="0,-42 6,-22 0,-28 -6,-22" fill="rgba(201,162,75,0.4)"/>
-          <polygon points="0,-28 6,-22 0,-16 -6,-22" fill="rgba(201,162,75,0.18)"/>
-          <text x="0" y="-50" text-anchor="middle" fill="rgba(201,162,75,0.4)" font-size="11" font-family="monospace" font-weight="bold">N</text>
-          <text x="0"  y="60"  text-anchor="middle" fill="rgba(201,162,75,0.25)" font-size="9" font-family="monospace">S</text>
-          <text x="-52" y="4" text-anchor="middle" fill="rgba(201,162,75,0.25)" font-size="9" font-family="monospace">W</text>
-          <text x="52"  y="4" text-anchor="middle" fill="rgba(201,162,75,0.25)" font-size="9" font-family="monospace">E</text>
+        <!-- DOORS -->
+        <line x1="400" y1="170" x2="470" y2="170" stroke="rgba(201,162,75,0.18)" stroke-width="1.2"/>
+        <path d="M400,170 A70,70 0 0,0 400,240" fill="rgba(201,162,75,0.04)" stroke="rgba(201,162,75,0.16)" stroke-width="1" stroke-dasharray="5,3"/>
+        <line x1="510" y1="355" x2="510" y2="285" stroke="rgba(201,162,75,0.15)" stroke-width="1.2"/>
+        <path d="M510,355 A70,70 0 0,1 580,355" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.14)" stroke-width="1" stroke-dasharray="5,3"/>
+        <line x1="690" y1="150" x2="755" y2="150" stroke="rgba(201,162,75,0.14)" stroke-width="1.2"/>
+        <path d="M690,150 A65,65 0 0,0 690,215" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.13)" stroke-width="1" stroke-dasharray="5,3"/>
+        <line x1="690" y1="415" x2="750" y2="415" stroke="rgba(201,162,75,0.13)" stroke-width="1.2"/>
+        <path d="M690,415 A60,60 0 0,0 690,475" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.12)" stroke-width="1" stroke-dasharray="5,3"/>
+        <line x1="930" y1="410" x2="930" y2="465" stroke="rgba(201,162,75,0.12)" stroke-width="1.2"/>
+        <path d="M930,410 A55,55 0 0,1 985,410" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.11)" stroke-width="1" stroke-dasharray="5,3"/>
+
+        <!-- ROOM LABELS -->
+        <text x="543" y="213" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">LIVING ROOM</text>
+        <text x="543" y="231" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">36 m²</text>
+        <text x="800" y="205" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">MASTER BEDROOM</text>
+        <text x="800" y="223" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">42 m²</text>
+        <text x="1044" y="155" text-anchor="middle" fill="rgba(111,168,255,0.18)" font-size="8.5" font-family="monospace" letter-spacing="1.5">EN-SUITE</text>
+        <text x="543" y="506" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">KITCHEN</text>
+        <text x="543" y="524" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">28 m²</text>
+        <text x="808" y="506" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">BEDROOM 2</text>
+        <text x="808" y="524" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">22 m²</text>
+        <text x="1044" y="506" text-anchor="middle" fill="rgba(111,168,255,0.22)" font-size="10" font-family="monospace" letter-spacing="2">STUDY</text>
+        <text x="1044" y="524" text-anchor="middle" fill="rgba(111,168,255,0.14)" font-size="7.5" font-family="monospace">18 m²</text>
+
+        <!-- DIMENSION LINES -->
+        <line x1="400" y1="26" x2="1160" y2="26" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
+        <line x1="400" y1="18" x2="400" y2="34" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
+        <line x1="1160" y1="18" x2="1160" y2="34" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
+        <text x="780" y="21" text-anchor="middle" fill="rgba(111,168,255,0.28)" font-size="8" font-family="monospace">19.00 m</text>
+        <line x1="400" y1="38" x2="690" y2="38" stroke="rgba(111,168,255,0.15)" stroke-width=".7"/>
+        <line x1="690" y1="32" x2="690" y2="44" stroke="rgba(111,168,255,0.15)" stroke-width=".7"/>
+        <text x="545" y="36" text-anchor="middle" fill="rgba(111,168,255,0.2)" font-size="7" font-family="monospace">7.25 m</text>
+        <line x1="690" y1="38" x2="1160" y2="38" stroke="rgba(111,168,255,0.15)" stroke-width=".7"/>
+        <text x="925" y="36" text-anchor="middle" fill="rgba(111,168,255,0.2)" font-size="7" font-family="monospace">11.75 m</text>
+        <line x1="1182" y1="55" x2="1182" y2="640" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
+        <line x1="1174" y1="55" x2="1190" y2="55" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
+        <line x1="1174" y1="640" x2="1190" y2="640" stroke="rgba(111,168,255,0.22)" stroke-width=".8"/>
+        <text x="1198" y="352" text-anchor="middle" fill="rgba(111,168,255,0.28)" font-size="8" font-family="monospace" transform="rotate(90,1198,352)">14.63 m</text>
+
+        <!-- Section marker -->
+        <line x1="398" y1="210" x2="360" y2="210" stroke="rgba(201,162,75,0.28)" stroke-width="1" stroke-dasharray="8,3"/>
+        <circle cx="352" cy="210" r="9" fill="none" stroke="rgba(201,162,75,0.28)" stroke-width="1"/>
+        <text x="352" y="214" text-anchor="middle" fill="rgba(201,162,75,0.34)" font-size="7.5" font-family="monospace">A</text>
+
+        <!-- COMPASS ROSE -->
+        <g transform="translate(205,185)">
+          <circle cx="0" cy="0" r="54" fill="none" stroke="rgba(201,162,75,0.1)" stroke-width="1"/>
+          <circle cx="0" cy="0" r="13" fill="none" stroke="rgba(201,162,75,0.18)" stroke-width="1"/>
+          <line x1="0" y1="-54" x2="0" y2="54" stroke="rgba(201,162,75,0.1)" stroke-width=".8"/>
+          <line x1="-54" y1="0" x2="54" y2="0" stroke="rgba(201,162,75,0.1)" stroke-width=".8"/>
+          <line x1="-38" y1="-38" x2="38" y2="38" stroke="rgba(201,162,75,0.05)" stroke-width=".6"/>
+          <line x1="38" y1="-38" x2="-38" y2="38" stroke="rgba(201,162,75,0.05)" stroke-width=".6"/>
+          <polygon points="0,-54 7,-28 0,-36 -7,-28" fill="rgba(201,162,75,0.6)"/>
+          <polygon points="0,-36 7,-28 0,-18 -7,-28" fill="rgba(201,162,75,0.22)"/>
+          <text x="0" y="-64" text-anchor="middle" fill="rgba(201,162,75,0.6)" font-size="14" font-family="monospace" font-weight="bold">N</text>
+          <text x="0" y="76" text-anchor="middle" fill="rgba(201,162,75,0.3)" font-size="10" font-family="monospace">S</text>
+          <text x="-66" y="4" text-anchor="middle" fill="rgba(201,162,75,0.3)" font-size="10" font-family="monospace">W</text>
+          <text x="66" y="4" text-anchor="middle" fill="rgba(201,162,75,0.3)" font-size="10" font-family="monospace">E</text>
         </g>
 
-        <!-- ══ CENTER-RIGHT: Scale bar ══ -->
-        <g transform="translate(500,230)">
-          <rect x="0"   y="-5" width="50" height="10" fill="rgba(111,168,255,0.12)" stroke="rgba(111,168,255,0.22)" stroke-width=".7"/>
-          <rect x="50"  y="-5" width="50" height="10" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.22)" stroke-width=".7"/>
-          <rect x="100" y="-5" width="50" height="10" fill="rgba(111,168,255,0.12)" stroke="rgba(111,168,255,0.22)" stroke-width=".7"/>
-          <rect x="150" y="-5" width="50" height="10" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.22)" stroke-width=".7"/>
-          <text x="0"   y="16" fill="rgba(111,168,255,0.22)" font-size="7" font-family="monospace">0</text>
-          <text x="96"  y="16" fill="rgba(111,168,255,0.22)" font-size="7" font-family="monospace">5m</text>
-          <text x="192" y="16" fill="rgba(111,168,255,0.22)" font-size="7" font-family="monospace">10m</text>
-          <text x="0" y="-12" fill="rgba(111,168,255,0.18)" font-size="7.5" font-family="monospace" letter-spacing="1">SCALE 1:50</text>
+        <!-- SCALE BAR -->
+        <g transform="translate(95,540)">
+          <text x="0" y="-14" fill="rgba(111,168,255,0.24)" font-size="7.5" font-family="monospace" letter-spacing="1.5">SCALE  1:100</text>
+          <rect x="0"   y="-5" width="50" height="9" fill="rgba(111,168,255,0.15)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
+          <rect x="50"  y="-5" width="50" height="9" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
+          <rect x="100" y="-5" width="50" height="9" fill="rgba(111,168,255,0.15)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
+          <rect x="150" y="-5" width="50" height="9" fill="rgba(111,168,255,0.04)" stroke="rgba(111,168,255,0.28)" stroke-width=".7"/>
+          <text x="0"   y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">0</text>
+          <text x="44"  y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">5m</text>
+          <text x="94"  y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">10m</text>
+          <text x="192" y="13" fill="rgba(111,168,255,0.24)" font-size="7" font-family="monospace">20m</text>
         </g>
 
-        <!-- ══ RIGHT: Isometric building ══ -->
-        <g transform="translate(820,60)" fill="none" stroke-width="1.6">
-          <!-- Top face -->
-          <polygon points="150,0 250,58 250,58 150,116 50,58" fill="rgba(201,162,75,0.06)" stroke="rgba(201,162,75,0.2)"/>
-          <!-- Front-left face -->
-          <polygon points="50,58 150,116 150,246 50,188" fill="rgba(201,162,75,0.04)" stroke="rgba(201,162,75,0.16)"/>
-          <!-- Front-right face -->
-          <polygon points="250,58 150,116 150,246 250,188" fill="rgba(201,162,75,0.03)" stroke="rgba(201,162,75,0.13)"/>
-          <!-- Vertical edges -->
-          <line x1="50"  y1="58"  x2="50"  y2="188" stroke="rgba(201,162,75,0.16)" stroke-width="1.5"/>
-          <line x1="250" y1="58"  x2="250" y2="188" stroke="rgba(201,162,75,0.13)" stroke-width="1.5"/>
-          <line x1="150" y1="116" x2="150" y2="246" stroke="rgba(201,162,75,0.16)" stroke-width="1.5"/>
-          <!-- Windows front-left -->
-          <rect x="68"  y="110" width="28" height="38" fill="rgba(111,168,255,0.09)" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
-          <rect x="108" y="110" width="28" height="38" fill="rgba(111,168,255,0.09)" stroke="rgba(111,168,255,0.22)" stroke-width="1"/>
-          <!-- Windows front-right -->
-          <rect x="166" y="110" width="28" height="38" fill="rgba(111,168,255,0.06)" stroke="rgba(111,168,255,0.18)" stroke-width="1"/>
-          <rect x="206" y="110" width="28" height="38" fill="rgba(111,168,255,0.06)" stroke="rgba(111,168,255,0.18)" stroke-width="1"/>
-          <!-- Top detail lines -->
-          <line x1="150" y1="0" x2="150" y2="116" stroke="rgba(201,162,75,0.1)" stroke-width=".8" stroke-dasharray="5,3"/>
+        <!-- CAD CROSSHAIR -->
+        <g transform="translate(268,430)" stroke="rgba(201,162,75,0.22)" stroke-width="1">
+          <circle cx="0" cy="0" r="20" fill="none"/>
+          <circle cx="0" cy="0" r="3" fill="none"/>
+          <line x1="-32" y1="0" x2="-23" y2="0"/>
+          <line x1="23" y1="0" x2="32" y2="0"/>
+          <line x1="0" y1="-32" x2="0" y2="-23"/>
+          <line x1="0" y1="23" x2="0" y2="32"/>
+          <circle cx="0" cy="0" r="1.5" fill="rgba(201,162,75,0.4)"/>
         </g>
 
-        <!-- ══ RIGHT: CAD cursor / crosshair ══ -->
-        <g transform="translate(1100,420)" stroke="rgba(201,162,75,0.22)" stroke-width="1">
-          <circle cx="0" cy="0" r="18" fill="none"/>
-          <line x1="-28" y1="0" x2="-20" y2="0"/>
-          <line x1="20" y1="0" x2="28" y2="0"/>
-          <line x1="0" y1="-28" x2="0" y2="-20"/>
-          <line x1="0" y1="20" x2="0" y2="28"/>
-          <circle cx="0" cy="0" r="2" fill="rgba(201,162,75,0.4)"/>
+        <!-- TITLE BLOCK -->
+        <g transform="translate(44,598)">
+          <text x="0" y="0"  fill="rgba(201,162,75,0.32)" font-size="8.5" font-family="monospace" letter-spacing="2">ARCHITECTURAL FLOOR PLAN</text>
+          <text x="0" y="16" fill="rgba(111,168,255,0.2)"  font-size="7"   font-family="monospace" letter-spacing="1">DWG: AH-FP-2024-001  ·  REV: A</text>
+          <text x="0" y="30" fill="rgba(111,168,255,0.15)" font-size="6.5" font-family="monospace">AutoCAD 2024  ·  Revit Architecture</text>
         </g>
 
-        <!-- ══ BOTTOM: tech label strip ══ -->
-        <g transform="translate(40,640)" fill="rgba(111,168,255,0.18)" font-size="8.5" font-family="monospace" letter-spacing="1.5">
+        <!-- TECH LABELS -->
+        <g transform="translate(44,658)" fill="rgba(111,168,255,0.16)" font-size="8" font-family="monospace" letter-spacing="1.5">
           <text x="0">AutoCAD</text>
-          <text x="100" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="118">Revit</text>
-          <text x="182" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="200">3ds Max</text>
-          <text x="288" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="306">V-Ray</text>
-          <text x="368" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="386">Cinema 4D</text>
-          <text x="490" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="508">Lumion</text>
-          <text x="578" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="596">SketchUp</text>
-          <text x="680" fill="rgba(201,162,75,0.22)">•</text>
-          <text x="698">Twinmotion</text>
+          <text x="90"  fill="rgba(201,162,75,0.22)">•</text>
+          <text x="106">Revit</text>
+          <text x="162" fill="rgba(201,162,75,0.22)">•</text>
+          <text x="178">3ds Max</text>
+          <text x="254" fill="rgba(201,162,75,0.22)">•</text>
+          <text x="270">V-Ray</text>
+          <text x="322" fill="rgba(201,162,75,0.22)">•</text>
+          <text x="338">Cinema 4D</text>
+          <text x="430" fill="rgba(201,162,75,0.22)">•</text>
+          <text x="446">Lumion</text>
+          <text x="504" fill="rgba(201,162,75,0.22)">•</text>
+          <text x="520">SketchUp</text>
         </g>
 
-        <!-- Ruler along bottom -->
-        <g stroke="rgba(111,168,255,0.12)" stroke-width=".7" fill="none" transform="translate(0,620)">
-          <line x1="40" y1="0" x2="1160" y2="0"/>
-          <line x1="40"   y1="-5" x2="40"   y2="5"/>
-          <line x1="180"  y1="-3" x2="180"  y2="3"/>
-          <line x1="320"  y1="-5" x2="320"  y2="5"/>
-          <line x1="460"  y1="-3" x2="460"  y2="3"/>
-          <line x1="600"  y1="-5" x2="600"  y2="5"/>
-          <line x1="740"  y1="-3" x2="740"  y2="3"/>
-          <line x1="880"  y1="-5" x2="880"  y2="5"/>
-          <line x1="1020" y1="-3" x2="1020" y2="3"/>
-          <line x1="1160" y1="-5" x2="1160" y2="5"/>
-        </g>
       </svg>
     </div>
   </div>
@@ -805,13 +803,11 @@
   <div class="container">
     <div class="footer-inner">
       <a href="#home" class="footer-logo" aria-label="Abdelhak Haddani">
-        <svg viewBox="0 0 100 100" class="logo-mark" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 5 L87 26 L50 47 L13 26 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M13 26 L50 47 L50 93 L13 72 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M87 26 L87 72 L50 93 L50 47 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <line x1="50" y1="47" x2="50" y2="93" stroke="currentColor" stroke-width="2"/>
-          <polyline points="13,41 50,62 87,41" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
-          <polyline points="13,57 50,78 87,57" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
+        <svg viewBox="20 14 164 218" class="logo-mark" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 26 152 L 26 54 Q 26 20 100 20 Q 174 20 174 56 L 174 113 Q 174 150 134 150 L 67 150 Q 51 150 51 134 Q 51 118 67 118 L 134 118"
+                stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 167 174 Q 167 162 130 162 L 72 162 Q 29 162 29 192 Q 29 222 72 222 L 130 222 Q 167 222 167 210"
+                stroke="currentColor" stroke-width="17" stroke-linecap="round"/>
         </svg>
       </a>
       <p>&copy; <span id="year"></span> <strong>ABDELHAK HADDANI</strong>. All rights reserved.</p>
