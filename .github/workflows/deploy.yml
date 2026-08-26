@@ -35,13 +35,18 @@ jobs:
           # Folders that get the featured hero-card treatment
           FEATURED = {'Details-Plans-and-Drafts'}
 
+          # Junk folders to skip entirely
+          SKIP = {'JPEG', 'New folder'}
+
           # Scan every subfolder inside assets/img/
           for folder_name in sorted(os.listdir(img_dir)):
               folder_path = os.path.join(img_dir, folder_name)
               if not os.path.isdir(folder_path):
                   continue  # skip files like logo.svg, favicon.svg
+              if folder_name in SKIP:
+                  continue  # skip junk folders
 
-              # Collect all image files, sorted by name
+              # Collect all image files, sorted by name (case-insensitive extension match)
               images = sorted([
                   f for f in os.listdir(folder_path)
                   if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp', '.gif'))
