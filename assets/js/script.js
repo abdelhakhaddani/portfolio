@@ -480,14 +480,32 @@ document.addEventListener('DOMContentLoaded', () => {
       grid.innerHTML = '<p style="color:var(--gold);text-align:center;padding:2rem">Projects loading…</p>';
     });
 
-  /* ── Contact form → opens WhatsApp ── */
+  /* ── Contact form → opens WhatsApp + silently notifies backend ── */
   window.handleFormSubmit = function(e) {
     e.preventDefault();
+
     const name    = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('femail').value.trim();
     const subject = document.getElementById('fsubject').value.trim() || 'Portfolio Inquiry';
     const message = document.getElementById('fmessage').value.trim();
-    const text    = `Hi Abdelhak! 👋\n\nMy name is ${name}.\nSubject: ${subject}\n\n${message}`;
-    window.open(`https://wa.me/13322604690?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+
+    // 1. Open WhatsApp (primary action — always works, no backend needed)
+    const waText = `Hi Abdelhak! 👋\n\nMy name is ${name}.\nSubject: ${subject}\n\n${message}`;
+    window.open(`https://wa.me/13322604690?text=${encodeURIComponent(waText)}`, '_blank', 'noopener,noreferrer');
+
+    // 2. Silently notify backend (Telegram admin alert) — fire-and-forget
+    const BACKEND = window.PORTFOLIO_BACKEND_URL || '';
+    if (BACKEND) {
+      fetch(`${BACKEND}/api/contact`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ name, email, subject, message }),
+      }).catch(() => {/* silent — WhatsApp already opened */});
+    }
   };
+
+  // Backend URL is injected at deploy time (see DEPLOYMENT.md).
+  // Leave empty to disable backend notifications (WhatsApp still works).
+  window.PORTFOLIO_BACKEND_URL = '';
 
 });
