@@ -830,24 +830,3 @@ a.contact-item:hover .contact-arrow { color:var(--gold); }
   .wa-float::before { animation:none; }
 }
 
-/* ═══════════════════════════════════════
-   TELEGRAM AI BUTTON (contact section)
-═══════════════════════════════════════ */
-.tg-cta-btn {
-  display:inline-flex; align-items:center; gap:.65rem;
-  margin-top:1.4rem;
-  padding:.75rem 1.4rem;
-  background:linear-gradient(135deg,#2ca5e0,#1e8ec7);
-  color:#fff;
-  border-radius:var(--radius);
-  font-size:.9rem; font-weight:600;
-  transition:transform var(--t), box-shadow var(--t), background var(--t);
-  box-shadow:0 4px 18px rgba(44,165,224,.35);
-  text-decoration:none;
-}
-.tg-cta-btn:hover {
-  transform:translateY(-2px);
-  box-shadow:0 8px 28px rgba(44,165,224,.5);
-  background:linear-gradient(135deg,#34b5f0,#2699d8);
-}
-.tg-cta-btn:active { transform:translateY(0); }
